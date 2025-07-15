@@ -1,0 +1,141 @@
+{
+  "home": {
+    "welcome": "Bem-vindo ao InterRota",
+    "description": "Compre bilhetes de viagem de forma rápida e segura. Conectamos você às melhores rotas interprovinciais de Moçambique.",
+    "login": "Fazer Login",
+    "signup": "Criar Conta"
+  },
+  "login": {
+    "title": "Login",
+    "name": "Nome",
+    "contact": "Contacto",
+    "continue": "Continuar",
+    "back": "Voltar",
+    "error": "Preencha o nome e um contacto válido!",
+    "success": "Login efetuado com sucesso!",
+    "placeholders": {
+      "name": "Digite seu nome",
+      "contact": "84xxxxxxx"
+    }
+  },
+  "signup": {
+    "title": "Criar Conta",
+    "name": "Nome",
+    "contact": "Contacto",
+    "address": "Moradia",
+    "familyContact": "Número Familiar",
+    "location": "Localização (opcional)",
+    "continue": "Continuar",
+    "back": "Voltar",
+    "error": "Preencha todos os campos corretamente!",
+    "success": "Conta criada com sucesso!",
+    "placeholders": {
+      "name": "Digite seu nome",
+      "contact": "84xxxxxxx",
+      "address": "Digite sua moradia",
+      "familyContact": "84xxxxxxx",
+      "selectLocation": "Selecione um bairro"
+    },
+    "options": {
+      "muahivire": "Muahivire",
+      "namikopo": "Namikopo"
+    }
+  },
+  "menu": {
+    "buyTicket": "Adquirir Bilhete",
+    "history": "Meus Bilhetes",
+    "exploreMoz": "Explore Moçambique"
+  },
+  "ticket": {
+    "title": "Compra de Bilhete",
+    "company": "Companhia",
+    "destination": "Destino",
+    "date": "Data",
+    "quantity": "Quantidade",
+    "familyContact": "Número Familiar",
+    "continue": "Continuar",
+    "back": "Voltar",
+    "error": "Preencha todos os campos corretamente!",
+    "success": "Bilhete preparado!",
+    "placeholders": {
+      "quantity": "Quantidade",
+      "selectDestination": "Selecione o Destino"
+    },
+    "options": {
+      "maputo": "Maputo",
+      "nampula": "Nampula"
+    }
+  },
+  "ticketDetails": {
+    "title": "Detalhes do Bilhete",
+    "company": "Companhia",
+    "destination": "Destino",
+    "date": "Data",
+    "quantity": "Quantidade",
+    "familyContact": "Número Familiar",
+    "proceed": "Continuar para Pagamento",
+    "edit": "Editar Dados",
+    "back": "Voltar",
+    "noTicket": "Nenhum bilhete encontrado. Volte e preencha os dados."
+  },
+  "paymentMethod": {
+    "title": "Método de Pagamento",
+    "mpesa": "Mpesa",
+    "emola": "Emola",
+    "back": "Voltar"
+  },
+  "payment": {
+    "title": "Método de Pagamento",
+    "mpesa": "Mpesa",
+    "emola": "Emola",
+    "pay": "Pagar",
+    "back": "Voltar",
+    "error": "Selecione um método de pagamento!",
+    "success": "Pagamento processado com sucesso!"
+  },
+  "paymentSuccess": {
+    "title": "Pagamento Concluído",
+    "message": "O pagamento foi processado com sucesso. Seu bilhete está pronto!",
+    "viewTicket": "Visualizar Bilhete",
+    "backToMenu": "Voltar ao Menu Principal"
+  },
+  "myTickets": {
+    "title": "Meus Bilhetes",
+    "back": "Voltar"
+  },
+  "pdf": {
+    "title": "Bilhete InterRota",
+    "company": "Companhia",
+    "destination": "Destino",
+    "date": "Data",
+    "quantity": "Quantidade",
+    "familyContact": "Número Familiar",
+    "generatedNote": "Este bilhete foi gerado automaticamente pelo sistema InterRota.",
+    "generating": "Gerando PDF do bilhete...",
+    "redirect": "Você será redirecionado em instantes."
+  },
+  "profile": {
+    "title": "Perfil",
+    "name": "Nome",
+    "contact": "Contacto",
+    "address": "Moradia",
+    "familyContact": "Número Familiar",
+    "save": "Salvar Alterações",
+    "back": "Voltar",
+    "error": "Preencha todos os campos corretamente!",
+    "success": "Perfil atualizado com sucesso!",
+    "placeholders": {
+      "name": "Seu nome",
+      "contact": "84xxxxxxx",
+      "address": "Sua moradia",
+      "familyContact": "84xxxxxxx"
+    }
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "portuguese": "Português",
+    "english": "English",
+    "back": "Voltar"
+  }
+}
