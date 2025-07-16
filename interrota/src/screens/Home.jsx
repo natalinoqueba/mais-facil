@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const slides = [
-  "/images/city.jpeg",
+  "/images/fundo-1.jpg",
+  "/images/fundo-3.jpg",
+  "/images/fundo-4.jpg",
 ];
 
 const Home = () => {

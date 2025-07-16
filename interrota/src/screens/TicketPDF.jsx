@@ -68,7 +68,7 @@ const TicketPDF = () => {
       doc.text('Suporte: (+258) 84 123 4567 | www.maisfacil.com', 20, 146);
 
       doc.save('interrota-bilhete.pdf');
-      setTimeout(() => navigate('/menu'), 1000);
+      setTimeout(() => navigate('/mainmenu'), 1000);
     };
   }, [navigate]);
 

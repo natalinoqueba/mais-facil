@@ -25,17 +25,17 @@ const Navbar = () => {
       "
       style={{ fontFamily: "'SF Pro Text', 'San Francisco', system-ui, sans-serif" }}
     >
-      {/* Perfil à esquerda */}
+      {/* Avatar à esquerda */}
       <Link
         to="/profile"
-        className="
-          text-2xl cursor-pointer
-          hover:opacity-80 hover:brightness-110
-          transition duration-300
-        "
+        className="hover:opacity-80 transition duration-300"
         aria-label="Perfil"
       >
-        👤
+        <img
+          src="/images/profile.png"
+          alt="Perfil"
+          className="h-8 w-8 rounded-full object-cover"
+        />
       </Link>
 
       {/* Logo ao centro */}
@@ -43,22 +43,20 @@ const Navbar = () => {
         <img src="/images/logo.png" alt="InterRota Logo" className="h-10 w-auto" />
       </Link>
 
-      {/* Configurações à direita */}
+      {/* Ícone de configurações à direita */}
       <div className="relative">
         <button
           onClick={() => setShowLangMenu((prev) => !prev)}
-          className="
-            text-2xl cursor-pointer
-            hover:opacity-80 hover:brightness-110
-            transition duration-300
-            focus:outline-none focus:ring-2 focus:ring-[#27A614]
-            rounded-md
-          "
+          className="focus:outline-none rounded-md hover:opacity-80 transition duration-300"
           aria-haspopup="true"
           aria-expanded={showLangMenu}
           aria-label="Configurações"
         >
-          ⚙️
+          <img
+            src="/images/settings.png"
+            alt="Configurações"
+            className="h-9 w-9"
+          />
         </button>
 
         {showLangMenu && (
@@ -66,12 +64,7 @@ const Navbar = () => {
             className="
               absolute right-0 mt-2
               bg-white/50 backdrop-blur-sm
-              rounded-xl
-              shadow-lg
-              p-2
-              z-50
-              text-sm
-              w-36
+              rounded-xl shadow-lg p-2 z-50 text-sm w-36
               border border-[#27A614]/30
             "
             role="menu"
@@ -79,26 +72,14 @@ const Navbar = () => {
           >
             <button
               onClick={() => changeLanguage("pt")}
-              className="
-                block w-full text-left px-4 py-2
-                rounded-lg
-                hover:bg-[#27A614]/30
-                transition duration-300
-                focus:outline-none focus:bg-[#27A614]/50
-              "
+              className="block w-full text-left px-4 py-2 rounded-lg hover:bg-[#27A614]/30 transition duration-300"
               role="menuitem"
             >
               🇵🇹 Português
             </button>
             <button
               onClick={() => changeLanguage("en")}
-              className="
-                block w-full text-left px-4 py-2
-                rounded-lg
-                hover:bg-[#27A614]/30
-                transition duration-300
-                focus:outline-none focus:bg-[#27A614]/50
-              "
+              className="block w-full text-left px-4 py-2 rounded-lg hover:bg-[#27A614]/30 transition duration-300"
               role="menuitem"
             >
               🇬🇧 English

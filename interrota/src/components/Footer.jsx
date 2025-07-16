@@ -3,9 +3,9 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer
-      className="w-full bg-[#125907] backdrop-blur-[12px] 
+      className="w-full bg-[#125907]/95 backdrop-blur-[11px] 
                  border-t border-white/10 text-white py-8 px-6 
-                 rounded-t-lg"
+                 "
       style={{ fontFamily: "'San Francisco Pro', sans-serif" }}
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
