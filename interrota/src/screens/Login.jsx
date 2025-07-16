@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ name: '', contact: '' });
-  const [message, setMessage] = useState({ type: '', text: '' });
+  const [form, setForm] = useState({ name: "", contact: "" });
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -18,38 +18,53 @@ const Login = () => {
 
   const handleLogin = () => {
     if (!form.name || !validateContact(form.contact)) {
-      setMessage({ type: 'error', text: t('login.error') });
+      setMessage({ type: "error", text: t("login.error") });
       return;
     }
 
-    setMessage({ type: 'success', text: t('login.success') });
-    setTimeout(() => navigate('/mainmenu'), 1000);
+    const userData = {
+      name: form.name,
+      contact: form.contact,
+      address: "", // campos adicionais ainda vazios
+      familyContact: "",
+    };
+
+    localStorage.setItem("userProfile", JSON.stringify(userData));
+    setMessage({ type: "success", text: t("login.success") });
+    setTimeout(() => navigate("/mainmenu"), 1000);
   };
 
   return (
     <div
       className="
-        max-w-md mx-auto mt-16
+        min-h-vh  mt-16
         bg-white/30 backdrop-blur-md
-        rounded-xl shadow-lg
-        p-6 space-y-6
+        rounded
+        p-6 space-y-6 mb-32
         font-sfpro
         text-gray-900
       "
-      style={{ fontFamily: "'SF Pro Text', 'San Francisco', system-ui, sans-serif" }}
+      style={{
+        fontFamily: "'SF Pro Text', 'San Francisco', system-ui, sans-serif",
+      }}
     >
-      <h2 className="text-2xl font-bold text-center" style={{ color: '#0A7307' }}>
-        {t('login.title')}
+      <h2
+        className="text-2xl font-bold text-center"
+        style={{ color: "#0A7307" }}
+      >
+        {t("login.title")}
       </h2>
 
       <div>
-        <label htmlFor="name" className="block mb-1 font-semibold">{t('login.name')}</label>
+        <label htmlFor="name" className="block mb-1 font-semibold">
+          {t("login.name")}
+        </label>
         <input
           id="name"
           type="text"
           value={form.name}
           onChange={handleChange}
-          placeholder={t('login.placeholders.name')}
+          placeholder={t("login.placeholders.name")}
           className="
             w-full p-4
             bg-white/80 border border-[#F5F5F5]
@@ -58,19 +73,21 @@ const Login = () => {
             transition
             text-gray-800 text-base
           "
-          style={{ borderColor: '#27A614' }}
+          style={{ borderColor: "#27A614" }}
           autoComplete="off"
         />
       </div>
 
       <div>
-        <label htmlFor="contact" className="block mb-1 font-semibold">{t('login.contact')}</label>
+        <label htmlFor="contact" className="block mb-1 font-semibold">
+          {t("login.contact")}
+        </label>
         <input
           id="contact"
           type="tel"
           value={form.contact}
           onChange={handleChange}
-          placeholder={t('login.placeholders.contact')}
+          placeholder={t("login.placeholders.contact")}
           className="
             w-full p-4
             bg-white/80 border rounded-xl
@@ -78,7 +95,7 @@ const Login = () => {
             transition
             text-gray-800 text-base
           "
-          style={{ borderColor: '#27A614' }}
+          style={{ borderColor: "#27A614" }}
           autoComplete="off"
         />
       </div>
@@ -88,11 +105,13 @@ const Login = () => {
           role="alert"
           className={`
             p-3 rounded-lg text-sm font-medium
-            ${message.type === 'error'
-              ? 'bg-green-100 text-[#A2D99A]'
-              : 'bg-green-100 text-green-700'}
+            ${
+              message.type === "error"
+                ? "bg-green-100 text-[#A2D99A]"
+                : "bg-green-100 text-green-700"
+            }
             `}
-          style={{ opacity: message.type === 'error' ? 0.7 : 1 }}
+          style={{ opacity: message.type === "error" ? 0.7 : 1 }}
         >
           {message.text}
         </div>
@@ -111,9 +130,9 @@ const Login = () => {
             active:scale-95
             duration-300
           "
-          style={{ backgroundColor: '#0A7307' }}
+          style={{ backgroundColor: "#0A7307" }}
         >
-          {t('login.continue')}
+          {t("login.continue")}
         </button>
         <button
           onClick={() => navigate(-1)}
@@ -126,7 +145,7 @@ const Login = () => {
             font-medium
           "
         >
-          {t('login.back')}
+          {t("login.back")}
         </button>
       </div>
     </div>

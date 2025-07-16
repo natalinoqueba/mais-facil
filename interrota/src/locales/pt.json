@@ -1,6 +1,6 @@
 {
   "home": {
-    "welcome": "Bem-vindo ao InterRota",
+    "welcome": "Bem-vindo ao +Facil",
     "description": "Compre bilhetes de viagem de forma rápida e segura. Conectamos você às melhores rotas interprovinciais de Moçambique.",
     "login": "Fazer Login",
     "signup": "Criar Conta"
@@ -66,6 +66,14 @@
       "nampula": "Nampula"
     }
   },
+  "myTickets": {
+    "title": "Meus Bilhetes",
+    "none": "Você ainda não adquiriu nenhum bilhete.",
+    "company": "Companhia",
+    "date": "Data",
+    "quantity": "Quantidade",
+    "familyContact": "Número Familiar"
+  },
   "ticketDetails": {
     "title": "Detalhes do Bilhete",
     "company": "Companhia",
@@ -98,10 +106,6 @@
     "message": "O pagamento foi processado com sucesso. Seu bilhete está pronto!",
     "viewTicket": "Visualizar Bilhete",
     "backToMenu": "Voltar ao Menu Principal"
-  },
-  "myTickets": {
-    "title": "Meus Bilhetes",
-    "back": "Voltar"
   },
   "pdf": {
     "title": "Bilhete InterRota",

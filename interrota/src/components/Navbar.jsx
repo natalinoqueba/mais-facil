@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+// import { useAuth } from "../context/AuthContext";
+
 
 const Navbar = () => {
   const { i18n } = useTranslation();
   const [showLangMenu, setShowLangMenu] = useState(false);
+  // const { isAuthenticated } = useAuth();
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setShowLangMenu(false);
   };
+  // if (!isAuthenticated) return null; // 👈 Esconde navbar se não estiver logado
 
   return (
     <nav
       className="
         w-full fixed top-0 left-0 z-50
-        bg-white/80 backdrop-blur-md
+        bg-white/60 backdrop-blur-md
         border-b border-[#27A614]/20
         shadow-lg
         px-6 py-3
@@ -23,7 +27,9 @@ const Navbar = () => {
         font-sfpro
         text-[#0A7307]
       "
-      style={{ fontFamily: "'SF Pro Text', 'San Francisco', system-ui, sans-serif" }}
+      style={{
+        fontFamily: "'SF Pro Text', 'San Francisco', system-ui, sans-serif",
+      }}
     >
       {/* Avatar à esquerda */}
       <Link
@@ -40,7 +46,11 @@ const Navbar = () => {
 
       {/* Logo ao centro */}
       <Link to="/" className="flex items-center justify-center">
-        <img src="/images/logo.png" alt="InterRota Logo" className="h-10 w-auto" />
+        <img
+          src="/images/logo.png"
+          alt="InterRota Logo"
+          className="h-10 w-auto"
+        />
       </Link>
 
       {/* Ícone de configurações à direita */}
@@ -63,7 +73,7 @@ const Navbar = () => {
           <div
             className="
               absolute right-0 mt-2
-              bg-white/50 backdrop-blur-sm
+              bg-white/90 backdrop-blur-sm
               rounded-xl shadow-lg p-2 z-50 text-sm w-36
               border border-[#27A614]/30
             "

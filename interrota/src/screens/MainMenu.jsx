@@ -90,7 +90,7 @@ const MainMenu = () => {
           "
         >
           <h2 className="text-3xl font-bold text-[#0A7307] mb-6 select-none">
-            InterRota
+            +Facil
           </h2>
 
           <div className="space-y-4 max-w-sm mx-auto">
@@ -113,7 +113,7 @@ const MainMenu = () => {
             </button>
 
             <button
-              onClick={() => navigate("/history")}
+              onClick={() => navigate("/mytickets")}
               className="
                 w-full py-3 px-4
                 bg-[#27A614]

@@ -13,10 +13,11 @@ import Payment from "./screens/Payment";
 import PaymentSuccess from "./screens/PaymentSuccess";
 import TicketPDF from "./screens/TicketPDF"; // Assuming this is the route for PDF generation/viewing
 import Footer from "./components/Footer";
+import MyTickets from "./screens/MyTickets";
 
 function App() {
   return (
-    <Router>
+    <Router >
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,9 +27,10 @@ function App() {
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/ticket" element={<TicketPurchase />} />
         <Route path="/ticket-details" element={<TicketDetails />} />
+        <Route path="/mytickets" element={<MyTickets />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/ticket-pdf" element={<TicketPDF />} />
+        <Route path="/ticket-pdf" element={<TicketPDF />} />        
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
       <Footer />

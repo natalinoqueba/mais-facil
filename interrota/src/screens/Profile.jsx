@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,14 @@ const Profile = () => {
   });
 
   const [message, setMessage] = useState({ type: '', text: '' });
+
+  // ✅ Carregar perfil salvo ao abrir a tela
+  useEffect(() => {
+    const stored = localStorage.getItem("userProfile");
+    if (stored) {
+      setProfile(JSON.parse(stored));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -31,11 +39,12 @@ const Profile = () => {
       return;
     }
 
+    localStorage.setItem("userProfile", JSON.stringify(profile)); // ✅ salvar
     setMessage({ type: 'success', text: t('profile.success') });
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-16 bg-white text-gray-800 rounded-lg shadow-lg p-8 space-y-6">
+    <div className="min-h-screen max-w-lg mx-auto mt-16 bg-white text-gray-800 rounded-lg shadow-lg p-8 space-y-6">
       <h2 className="text-3xl font-semibold text-center text-black">{t('profile.title')}</h2>
 
       <div>
@@ -45,7 +54,7 @@ const Profile = () => {
           value={profile.name}
           onChange={handleChange}
           type="text"
-          className="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0A7307]"
+          className="w-full p-3 border border-gray-400 rounded-md focus:ring-2 focus:ring-[#0A7307]"
           placeholder={t('profile.placeholders.name')}
         />
       </div>
@@ -57,7 +66,7 @@ const Profile = () => {
           value={profile.contact}
           onChange={handleChange}
           type="text"
-          className="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0A7307]"
+          className="w-full p-3 border border-gray-400 rounded-md focus:ring-2 focus:ring-[#0A7307]"
           placeholder="84xxxxxxx"
         />
       </div>
@@ -69,7 +78,7 @@ const Profile = () => {
           value={profile.address}
           onChange={handleChange}
           type="text"
-          className="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0A7307]"
+          className="w-full p-3 border border-gray-400 rounded-md focus:ring-2 focus:ring-[#0A7307]"
           placeholder={t('profile.placeholders.address')}
         />
       </div>
@@ -81,12 +90,11 @@ const Profile = () => {
           value={profile.familyContact}
           onChange={handleChange}
           type="text"
-          className="w-full p-3 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0A7307]"
+          className="w-full p-3 border border-gray-400 rounded-md focus:ring-2 focus:ring-[#0A7307]"
           placeholder="84xxxxxxx"
         />
       </div>
 
-      {/* Mensagem de feedback */}
       {message.text && (
         <div
           className={`p-3 rounded-md text-sm font-medium ${
@@ -107,7 +115,7 @@ const Profile = () => {
           {t('profile.save')}
         </button>
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/menu')}
           className="bg-gray-200 text-gray-800 py-3 rounded-md hover:bg-gray-300 transition font-semibold"
         >
           {t('profile.back')}

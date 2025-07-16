@@ -42,8 +42,12 @@ const TicketPurchase = () => {
       return;
     }
 
+    // Salva o novo bilhete junto com os anteriores
+    const existing = JSON.parse(localStorage.getItem("tickets")) || [];
+    existing.push(form);
+    localStorage.setItem("tickets", JSON.stringify(existing));
+
     setMessage({ type: "success", text: t("ticket.success") });
-    localStorage.setItem("ticket", JSON.stringify(form));
     setTimeout(() => navigate("/ticket-details"), 1000);
   };
 
