@@ -115,7 +115,7 @@ const Profile = () => {
           {t('profile.save')}
         </button>
         <button
-          onClick={() => navigate('/menu')}
+          onClick={() => navigate(-1)}
           className="bg-gray-200 text-gray-800 py-3 rounded-md hover:bg-gray-300 transition font-semibold"
         >
           {t('profile.back')}

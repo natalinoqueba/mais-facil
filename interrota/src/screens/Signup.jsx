@@ -45,7 +45,7 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen pt-[95px] px-4 pb-12 bg-white text-black font-sfpro">
-      <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-xl p-6 space-y-5">
+      <div className="max-w-lg mx-auto bg-white  p-6 space-y-5">
         <h2 className="text-2xl font-bold text-center">{t("signup.title")}</h2>
 
         {/* Campo Nome */}

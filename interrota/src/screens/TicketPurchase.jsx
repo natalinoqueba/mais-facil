@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const TicketPurchase = () => {
   const { t } = useTranslation();
@@ -13,6 +13,13 @@ const TicketPurchase = () => {
     quantity: "",
     familyContact: "",
   });
+
+  useEffect(() => {
+    const saved = localStorage.getItem("ticket");
+    if (saved) {
+      setForm(JSON.parse(saved));
+    }
+  }, []);
 
   const [message, setMessage] = useState({ type: "", text: "" });
 
@@ -42,11 +49,7 @@ const TicketPurchase = () => {
       return;
     }
 
-    // Salva o novo bilhete junto com os anteriores
-    const existing = JSON.parse(localStorage.getItem("tickets")) || [];
-    existing.push(form);
-    localStorage.setItem("tickets", JSON.stringify(existing));
-
+    localStorage.setItem("ticket", JSON.stringify(form));
     setMessage({ type: "success", text: t("ticket.success") });
     setTimeout(() => navigate("/ticket-details"), 1000);
   };
@@ -54,7 +57,7 @@ const TicketPurchase = () => {
   return (
     <div
       className="
-        max-w-xl mx-auto mt-[70px] bg-white/30 backdrop-blur-md 
+        min-h-screen max-w-xl mx-auto mt-[70px] bg-white/30 backdrop-blur-md 
         p-8 space-y-5
       "
       style={{ fontFamily: "'SF Pro Text', 'San Francisco', sans-serif" }}

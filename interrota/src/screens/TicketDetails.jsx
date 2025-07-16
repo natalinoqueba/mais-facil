@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const TicketDetails = () => {
   const { t } = useTranslation();
@@ -8,16 +8,26 @@ const TicketDetails = () => {
   const [ticket, setTicket] = useState(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('ticket');
+    const saved = localStorage.getItem("ticket");
     if (saved) {
       setTicket(JSON.parse(saved));
     }
   }, []);
+  const handleProceed = () => {
+    const saved = localStorage.getItem("ticket");
+    if (saved) {
+      const newTicket = JSON.parse(saved);
+      const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
+      tickets.push(newTicket);
+      localStorage.setItem("tickets", JSON.stringify(tickets));
+      navigate("/payment");
+    }
+  };
 
   if (!ticket) {
     return (
       <div className="text-center mt-20 text-[#0A7307]">
-        <p className="text-lg font-medium">{t('ticketDetails.noTicket')}</p>
+        <p className="text-lg font-medium">{t("ticketDetails.noTicket")}</p>
         <button
           className="
             mt-4 px-4 py-2 rounded-md
@@ -25,9 +35,9 @@ const TicketDetails = () => {
             hover:bg-[#1F8B0F] transition
             font-medium shadow
           "
-          onClick={() => navigate('/ticket')}
+          onClick={() => navigate("/ticket")}
         >
-          {t('ticketDetails.back')}
+          {t("ticketDetails.back")}
         </button>
       </div>
     );
@@ -44,45 +54,54 @@ const TicketDetails = () => {
       style={{ fontFamily: "'SF Pro Text', 'San Francisco', sans-serif" }}
     >
       <h2 className="text-2xl font-bold text-center text-black select-none">
-        {t('ticketDetails.title')}
+        {t("ticketDetails.title")}
       </h2>
 
       <ul className="space-y-2 text-left text-[#0A7307]">
         <li>
-          <strong className="text-black">{t('ticketDetails.company')}:</strong> {ticket.company}
+          <strong className="text-black">{t("ticketDetails.company")}:</strong>{" "}
+          {ticket.company}
         </li>
         <li>
-          <strong className="text-black">{t('ticketDetails.destination')}:</strong> {ticket.destination}
+          <strong className="text-black">
+            {t("ticketDetails.destination")}:
+          </strong>{" "}
+          {ticket.destination}
         </li>
         <li>
-          <strong className="text-black">{t('ticketDetails.date')}:</strong> {ticket.date}
+          <strong className="text-black">{t("ticketDetails.date")}:</strong>{" "}
+          {ticket.date}
         </li>
         <li>
-          <strong className="text-black">{t('ticketDetails.quantity')}:</strong> {ticket.quantity}
+          <strong className="text-black">{t("ticketDetails.quantity")}:</strong>{" "}
+          {ticket.quantity}
         </li>
         <li>
-          <strong className="text-black">{t('ticketDetails.familyContact')}:</strong> {ticket.familyContact}
+          <strong className="text-black">
+            {t("ticketDetails.familyContact")}:
+          </strong>{" "}
+          {ticket.familyContact}
         </li>
       </ul>
 
       <div className="flex flex-col gap-3 mt-6">
         <button
-          onClick={() => navigate('/payment')}
+          onClick={handleProceed}
           className="
             bg-[#27A614] text-white py-2 rounded-md
             hover:bg-[#1F8B0F] transition shadow-md active:scale-95
           "
         >
-          {t('ticketDetails.proceed')}
+          {t("ticketDetails.proceed")}
         </button>
         <button
-          onClick={() => navigate('/ticket')}
+          onClick={() => navigate("/ticket")}
           className="
             bg-white/50 text-[#0A7307] py-2 rounded-md
             hover:bg-white transition border border-[#27A614]/20
           "
         >
-          {t('ticketDetails.edit')}
+          {t("ticketDetails.edit")}
         </button>
       </div>
     </div>
