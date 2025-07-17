@@ -31,7 +31,7 @@ const PaymentSuccess = () => {
             {t('paymentSuccess.viewTicket')}
           </button>
           <button
-            onClick={() => navigate('/menu')}
+            onClick={() => navigate('/mainmenu')}
             className="bg-white/70 text-[#0A7307] py-2 px-4 rounded-md border border-[#27A614]/30 hover:bg-white transition"
           >
             {t('paymentSuccess.backToMenu')}

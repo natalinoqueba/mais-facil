@@ -14,22 +14,22 @@ const TicketPurchase = () => {
     familyContact: "",
   });
 
+  const [message, setMessage] = useState({ type: "", text: "" });
+
   useEffect(() => {
-    const saved = localStorage.getItem("ticket");
-    if (saved) {
-      setForm(JSON.parse(saved));
+    const savedTicket = localStorage.getItem("ticket");
+    const selectedCompany = localStorage.getItem("selectedCompany");
+
+    if (savedTicket) {
+      setForm(JSON.parse(savedTicket));
+    } else if (selectedCompany) {
+      setForm((prev) => ({ ...prev, company: selectedCompany }));
     }
   }, []);
-
-  const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setForm((prev) => ({ ...prev, [id]: value }));
-  };
-
-  const handleSelectCompany = (company) => {
-    setForm((prev) => ({ ...prev, company }));
   };
 
   const validate = () => {
@@ -56,10 +56,8 @@ const TicketPurchase = () => {
 
   return (
     <div
-      className="
-        min-h-screen max-w-xl mx-auto mt-[70px] bg-white/30 backdrop-blur-md 
-        p-8 space-y-5
-      "
+      className="min-h-screen max-w-xl mx-auto mt-[70px] bg-white/30 backdrop-blur-md 
+      p-8 space-y-5"
       style={{ fontFamily: "'SF Pro Text', 'San Francisco', sans-serif" }}
     >
       <h2 className="text-2xl font-bold text-center select-none">
@@ -68,25 +66,24 @@ const TicketPurchase = () => {
 
       {/* Companhia */}
       <div>
-        <label className="block mb-2 font-medium">{t("ticket.company")}</label>
-        <div className="flex gap-4">
-          {["Nagi", "Citlink"].map((comp) => (
-            <button
-              key={comp}
-              type="button"
-              onClick={() => handleSelectCompany(comp)}
-              className={`flex-1 py-2 rounded-md font-medium transition ${
-                form.company === comp
-                  ? "bg-[#27A614] text-white shadow-md"
-                  : "bg-white/50 text-[#0A7307] hover:bg-white/70 border border-[#27A614]/20"
-              }`}
-            >
-              {comp}
-            </button>
-          ))}
-        </div>
+        <label htmlFor="company" className="block mb-1 font-medium">
+          {t("ticket.company")}
+        </label>
+        <select
+          id="company"
+          value={form.company}
+          onChange={handleChange}
+          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+        >
+          <option value="">{t("ticket.placeholders.selectCompany")}</option>
+          <option value="CBI">CBI</option>
+          <option value="Khurula">Khurula</option>
+          <option value="CITYLINK">CITYLINK</option>
+          <option value="ETRAGO">ETRAGO</option>
+          <option value="ESTA NA MODA">ESTA NA MODA</option>
+          <option value="NAGI">NAGI</option>
+        </select>
       </div>
-
       {/* Destino */}
       <div>
         <label className="block mb-1 font-medium">
@@ -101,6 +98,14 @@ const TicketPurchase = () => {
           <option value="">{t("ticket.placeholders.selectDestination")}</option>
           <option value="Maputo">{t("ticket.options.maputo")}</option>
           <option value="Nampula">{t("ticket.options.nampula")}</option>
+          <option value="Beira">{t("ticket.options.beira")}</option>
+          <option value="Quelimane">{t("ticket.options.quelimane")}</option>
+          <option value="Tete">{t("ticket.options.tete")}</option>
+          <option value="Pemba">{t("ticket.options.pemba")}</option>
+          <option value="Inhambane">{t("ticket.options.inhambane")}</option>
+          <option value="Xai-Xai">{t("ticket.options.xaiXai")}</option>
+          <option value="Chimoio">{t("ticket.options.chimoio")}</option>
+          <option value="Lichinga">{t("ticket.options.lichinga")}</option>
         </select>
       </div>
 
@@ -162,19 +167,13 @@ const TicketPurchase = () => {
       <div className="flex flex-col gap-3 mt-4">
         <button
           onClick={handleContinue}
-          className="
-            bg-[#27A614] text-white py-2 rounded-md
-            hover:bg-[#1F8B0F] transition shadow-md active:scale-95
-          "
+          className="bg-[#27A614] text-white py-2 rounded-md hover:bg-[#1F8B0F] transition shadow-md active:scale-95"
         >
           {t("ticket.continue")}
         </button>
         <button
           onClick={() => navigate(-1)}
-          className="
-            bg-white/50 text-[#0A7307] py-2 rounded-md
-            hover:bg-white transition border border-[#27A614]/20
-          "
+          className="bg-white/50 text-[#0A7307] py-2 rounded-md hover:bg-white transition border border-[#27A614]/20"
         >
           {t("ticket.back")}
         </button>

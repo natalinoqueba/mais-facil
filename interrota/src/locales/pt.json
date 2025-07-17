@@ -16,6 +16,10 @@
     "placeholders": {
       "name": "Digite seu nome",
       "contact": "84xxxxxxx"
+    },
+    "errors": {
+      "name": "Por favor, insira o seu nome.",
+      "contact": "Número de contacto inválido."
     }
   },
   "signup": {
@@ -27,7 +31,13 @@
     "location": "Localização (opcional)",
     "continue": "Continuar",
     "back": "Voltar",
-    "error": "Preencha todos os campos corretamente!",
+    "errors": {
+      "name": "Por favor, insira o seu nome.",
+      "contact": "Número de contacto inválido.",
+      "address": "Por favor, insira a sua morada.",
+      "familyContact": "Contacto familiar inválido.",
+      "location": "Selecione a sua localização."
+    },
     "success": "Conta criada com sucesso!",
     "placeholders": {
       "name": "Digite seu nome",
@@ -59,11 +69,20 @@
     "success": "Bilhete preparado!",
     "placeholders": {
       "quantity": "Quantidade",
-      "selectDestination": "Selecione o Destino"
+      "selectDestination": "Selecione o Destino",
+      "selectCompany": "Selecione a Companhia"
     },
     "options": {
       "maputo": "Maputo",
-      "nampula": "Nampula"
+      "nampula": "Nampula",
+      "beira": "Beira",
+      "quelimane": "Quelimane",
+      "tete": "Tete",
+      "pemba": "Pemba",
+      "inhambane": "Inhambane",
+      "xaiXai": "Xai-Xai",
+      "chimoio": "Chimoio",
+      "lichinga": "Lichinga"
     }
   },
   "myTickets": {
@@ -126,6 +145,7 @@
     "familyContact": "Número Familiar",
     "save": "Salvar Alterações",
     "back": "Voltar",
+    "logout": "Terminar sessão",
     "error": "Preencha todos os campos corretamente!",
     "success": "Perfil atualizado com sucesso!",
     "placeholders": {
@@ -141,5 +161,8 @@
     "portuguese": "Português",
     "english": "English",
     "back": "Voltar"
+  },
+  "company": {
+    "title": "Escolha a Companhia"
   }
 }

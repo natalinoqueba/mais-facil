@@ -16,6 +16,10 @@
     "placeholders": {
       "name": "Enter your name",
       "contact": "84xxxxxxx"
+    },
+    "errors": {
+      "name": "Please enter your name.",
+      "contact": "Invalid contact number."
     }
   },
   "signup": {
@@ -55,15 +59,24 @@
     "familyContact": "Family Contact",
     "continue": "Continue",
     "back": "Back",
-    "error": "Please fill all fields correctly!",
+    "error": "Please fill in all fields correctly!",
     "success": "Ticket ready!",
     "placeholders": {
       "quantity": "Quantity",
-      "selectDestination": "Select Destination"
+      "selectDestination": "Select Destination",
+      "selectCompany": "Select Company"
     },
     "options": {
       "maputo": "Maputo",
-      "nampula": "Nampula"
+      "nampula": "Nampula",
+      "beira": "Beira",
+      "quelimane": "Quelimane",
+      "tete": "Tete",
+      "pemba": "Pemba",
+      "inhambane": "Inhambane",
+      "xaiXai": "Xai-Xai",
+      "chimoio": "Chimoio",
+      "lichinga": "Lichinga"
     }
   },
   "ticketDetails": {
@@ -125,8 +138,15 @@
     "address": "Address",
     "familyContact": "Family Number",
     "save": "Save Changes",
+    "logout": "Log out",
     "back": "Back",
-    "error": "Please fill all fields correctly!",
+    "errors": {
+      "name": "Por favor, insira o seu nome.",
+      "contact": "Número de contacto inválido.",
+      "address": "Por favor, insira a sua morada.",
+      "familyContact": "Contacto familiar inválido.",
+      "location": "Selecione a sua localização."
+    },
     "success": "Profile updated successfully!",
     "placeholders": {
       "name": "Your name",
@@ -141,5 +161,8 @@
     "portuguese": "Portuguese",
     "english": "English",
     "back": "Back"
+  },
+  "company": {
+    "title": "Choose a Company"
   }
 }

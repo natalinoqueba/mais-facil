@@ -14,41 +14,42 @@ const Signup = () => {
     location: "",
   });
 
-  const [message, setMessage] = useState({ type: "", text: "" });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setForm((prev) => ({ ...prev, [id]: value }));
+    setErrors((prev) => ({ ...prev, [id]: "" }));
   };
 
   const validateContact = (c) => /^[89]\d{8}$/.test(c);
 
   const handleSignup = () => {
-    const { name, contact, address, familyContact } = form;
+    const newErrors = {};
 
-    if (
-      !name ||
-      !validateContact(contact) ||
-      !address ||
-      !validateContact(familyContact)
-    ) {
-      setMessage({ type: "error", text: t("signup.error") });
+    if (!form.name) newErrors.name = t("signup.errors.name");
+    if (!validateContact(form.contact))
+      newErrors.contact = t("signup.errors.contact");
+    if (!form.address) newErrors.address = t("signup.errors.address");
+    if (!validateContact(form.familyContact))
+      newErrors.familyContact = t("signup.errors.familyContact");
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
     localStorage.setItem("userProfile", JSON.stringify(form));
     localStorage.setItem("loggedIn", "true");
-
-    setMessage({ type: "success", text: t("signup.success") });
-    setTimeout(() => navigate("/mainmenu"), 1000);
+    navigate("/mainmenu");
   };
 
   return (
     <div className="min-h-screen pt-[95px] px-4 pb-12 bg-white text-black font-sfpro">
-      <div className="max-w-lg mx-auto bg-white  p-6 space-y-5">
+      <div className="max-w-lg mx-auto bg-white p-6 space-y-5">
         <h2 className="text-2xl font-bold text-center">{t("signup.title")}</h2>
 
-        {/* Campo Nome */}
+        {/* Nome */}
         <div>
           <label className="block mb-1 font-medium">{t("signup.name")}</label>
           <input
@@ -56,73 +57,88 @@ const Signup = () => {
             value={form.name}
             onChange={handleChange}
             placeholder={t("signup.placeholders.name")}
-            className="w-full p-3 border rounded-md text-black"
+            className={`w-full p-3 border border-[#27A614] rounded-md text-black ${
+              errors.name ? "border-red-500" : ""
+            }`}
           />
+          {errors.name && (
+            <p className="text-red-600 text-sm mt-1"> {errors.name}</p>
+          )}
         </div>
 
-        {/* Campo Contacto */}
+        {/* Contacto */}
         <div>
-          <label className="block mb-1 font-medium">{t("signup.contact")}</label>
+          <label className="block mb-1 font-medium">
+            {t("signup.contact")}
+          </label>
           <input
             id="contact"
             value={form.contact}
             onChange={handleChange}
             placeholder={t("signup.placeholders.contact")}
-            className="w-full p-3 border rounded-md text-black"
+            className={`w-full p-3 border border-[#27A614] rounded-md text-black ${
+              errors.contact ? "border-red-500" : ""
+            }`}
           />
+          {errors.contact && (
+            <p className="text-red-600 text-sm mt-1"> {errors.contact}</p>
+          )}
         </div>
 
-        {/* Campo Morada */}
+        {/* Morada */}
         <div>
-          <label className="block mb-1 font-medium">{t("signup.address")}</label>
+          <label className="block mb-1 font-medium">
+            {t("signup.address")}
+          </label>
           <input
             id="address"
             value={form.address}
             onChange={handleChange}
             placeholder={t("signup.placeholders.address")}
-            className="w-full p-3 border rounded-md text-black"
+            className={`w-full p-3 border border-[#27A614] rounded-md text-black ${
+              errors.address ? "border-red-500" : ""
+            }`}
           />
+          {errors.address && (
+            <p className="text-red-600 text-sm mt-1"> {errors.address}</p>
+          )}
         </div>
 
-        {/* Campo Contacto Familiar */}
+        {/* Contacto Familiar */}
         <div>
-          <label className="block mb-1 font-medium">{t("signup.familyContact")}</label>
+          <label className="block mb-1 font-medium">
+            {t("signup.familyContact")}
+          </label>
           <input
             id="familyContact"
             value={form.familyContact}
             onChange={handleChange}
             placeholder={t("signup.placeholders.familyContact")}
-            className="w-full p-3 border rounded-md text-black"
+            className={`w-full p-3 border border-[#27A614] rounded-md text-black ${
+              errors.familyContact ? "border-red-500" : ""
+            }`}
           />
+          {errors.familyContact && (
+            <p className="text-red-600 text-sm mt-1"> {errors.familyContact}</p>
+          )}
         </div>
 
-        {/* Localização */}
+        {/* Bairro (Opcional) */}
         <div>
-          <label className="block mb-1 font-medium">{t("signup.location")}</label>
+          <label className="block mb-1 font-medium">
+            {t("signup.location")}{" "}
+          </label>
           <select
             id="location"
             value={form.location}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md bg-white text-black"
+            className="w-full p-3 border border-[#27A614] rounded-md bg-white text-black"
           >
             <option value="">{t("signup.placeholders.selectLocation")}</option>
             <option value="Muahivire">{t("signup.options.muahivire")}</option>
             <option value="Namikopo">{t("signup.options.namikopo")}</option>
           </select>
         </div>
-
-        {/* Mensagem de Feedback */}
-        {message.text && (
-          <div
-            className={`p-3 rounded-md text-sm font-medium ${
-              message.type === "error"
-                ? "bg-red-100 text-red-700"
-                : "bg-green-100 text-green-700"
-            }`}
-          >
-            {message.text}
-          </div>
-        )}
 
         {/* Botões */}
         <div className="flex flex-col gap-2 pt-2">

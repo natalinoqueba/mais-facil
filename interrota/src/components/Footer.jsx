@@ -80,7 +80,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-8 border-t border-white/20 pt-4 text-center text-xs text-white/60 select-none">
-        &copy; {new Date().getFullYear()} InterRota. Todos os direitos reservados.
+        &copy; {new Date().getFullYear()} +Facil. Todos os direitos reservados.
       </div>
     </footer>
   );
