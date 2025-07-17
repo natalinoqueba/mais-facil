@@ -1,0 +1,43 @@
+{
+  "Khurula": {
+    "Molócue": 400,
+    "Mocuba": 800,
+    "Namacurra": 1000,
+    "Nicoadala": 1100,
+    "Zero": 1300,
+    "Khaia": 1500,
+    "Gorogozá": 2100,
+    "Enshoping": 2200,
+    "Muchuecue": 2500,
+    "Rio Save": 3500,
+    "Cruzamento Vilanculo": 4000,
+    "Maxixe": 4500,
+    "Xai-Xai": 4500,
+    "Maputo": 4500
+  },
+  "CBI": {
+    "Beira": 1000,
+    "Chimoio": 1200,
+    "Maputo": 4500
+  },
+  "ETRAGO": {
+    "Quelimane": 900,
+    "Lichinga": 3500,
+    "Maputo": 4700
+  },
+  "CITYLINK": {
+    "Tete": 1400,
+    "Pemba": 3000,
+    "Maputo": 4300
+  },
+  "NAGI": {
+    "Maputo": 4400,
+    "Xai-Xai": 4100,
+    "Maxixe": 4000
+  },
+  "ESTA NA MODA": {
+    "Beira": 1100,
+    "Chimoio": 1250,
+    "Maputo": 4600
+  }
+}

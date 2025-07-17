@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const companies = [
   {
     name: "CBI",
-    image: "/images/nagi.png",
+    image: "/images/btn-cbi.jpg",
   },
   {
     name: "Khurula",
@@ -41,10 +41,16 @@ const CompanySelector = () => {
   return (
     <div className="min-h-screen pt-[95px] px-4 pb-12 bg-white text-black font-sfpro">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-[#0A7307] mb-8">
-          {t("company.title")}
-        </h2>
-
+        <div className=" pt-[1px] px- pb-5 bg-white ">
+            <h2 className="text-3xl font-bold text-[#0A7307] mb-8">
+              {t("company.title")}
+            </h2>
+            <p>
+              Escolha a sua companhia de viagem preferida com a +Facil e comece a
+              planejar a sua próxima aventura por Moçambique! Selecione uma das
+              opções abaixo e compre sua passagem com rapidez e segurança.
+            </p>
+        </div>
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">     */}
         <div className=" grid grid-cols-2 md:grid-cols-3 gap-6">
           {companies.map((company, i) => (

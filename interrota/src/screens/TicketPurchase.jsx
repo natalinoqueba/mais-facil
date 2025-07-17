@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import routeData from "../routes.json"; // 👈 ajuste o caminho conforme seu projeto
 
 const TicketPurchase = () => {
   const { t } = useTranslation();
@@ -29,7 +30,11 @@ const TicketPurchase = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setForm((prev) => ({ ...prev, [id]: value }));
+    setForm((prev) => ({
+      ...prev,
+      [id]: value,
+      ...(id === "company" ? { destination: "" } : {}), // limpa destino se trocar companhia
+    }));
   };
 
   const validate = () => {
@@ -54,10 +59,20 @@ const TicketPurchase = () => {
     setTimeout(() => navigate("/ticket-details"), 1000);
   };
 
+  const destinations =
+    form.company && routeData[form.company]
+      ? Object.entries(routeData[form.company])
+      : [];
+
+  const unitPrice = form.destination
+    ? routeData[form.company]?.[form.destination] || 0
+    : 0;
+
+  const total = unitPrice * (parseInt(form.quantity) || 0);
+
   return (
     <div
-      className="min-h-screen max-w-xl mx-auto mt-[70px] bg-white/30 backdrop-blur-md 
-      p-8 space-y-5"
+      className="min-h-screen max-w-xl mx-auto mt-[70px] bg-white/30 backdrop-blur-md p-8 space-y-5"
       style={{ fontFamily: "'SF Pro Text', 'San Francisco', sans-serif" }}
     >
       <h2 className="text-2xl font-bold text-center select-none">
@@ -76,38 +91,41 @@ const TicketPurchase = () => {
           className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
         >
           <option value="">{t("ticket.placeholders.selectCompany")}</option>
-          <option value="CBI">CBI</option>
-          <option value="Khurula">Khurula</option>
-          <option value="CITYLINK">CITYLINK</option>
-          <option value="ETRAGO">ETRAGO</option>
-          <option value="ESTA NA MODA">ESTA NA MODA</option>
-          <option value="NAGI">NAGI</option>
+          {Object.keys(routeData).map((company) => (
+            <option key={company} value={company}>
+              {company}
+            </option>
+          ))}
         </select>
       </div>
+
       {/* Destino */}
       <div>
-        <label className="block mb-1 font-medium">
+        <label htmlFor="destination" className="block mb-1 font-medium">
           {t("ticket.destination")}
         </label>
         <select
           id="destination"
           value={form.destination}
           onChange={handleChange}
-          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+          disabled={!form.company}
+          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614] disabled:opacity-50"
         >
           <option value="">{t("ticket.placeholders.selectDestination")}</option>
-          <option value="Maputo">{t("ticket.options.maputo")}</option>
-          <option value="Nampula">{t("ticket.options.nampula")}</option>
-          <option value="Beira">{t("ticket.options.beira")}</option>
-          <option value="Quelimane">{t("ticket.options.quelimane")}</option>
-          <option value="Tete">{t("ticket.options.tete")}</option>
-          <option value="Pemba">{t("ticket.options.pemba")}</option>
-          <option value="Inhambane">{t("ticket.options.inhambane")}</option>
-          <option value="Xai-Xai">{t("ticket.options.xaiXai")}</option>
-          <option value="Chimoio">{t("ticket.options.chimoio")}</option>
-          <option value="Lichinga">{t("ticket.options.lichinga")}</option>
+          {destinations.map(([dest, price]) => (
+            <option key={dest} value={dest}>
+              {dest} – {price} MT
+            </option>
+          ))}
         </select>
       </div>
+
+      {/* Total */}
+      {form.destination && form.quantity && (
+        <div className="text-sm text-[#0A7307] font-medium">
+          Total: <span className="font-bold">{total} MT</span>
+        </div>
+      )}
 
       {/* Data */}
       <div>
@@ -150,7 +168,7 @@ const TicketPurchase = () => {
         />
       </div>
 
-      {/* Feedback visual */}
+      {/* Mensagem */}
       {message.text && (
         <div
           className={`p-3 rounded-md text-sm font-medium ${

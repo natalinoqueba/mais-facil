@@ -99,11 +99,13 @@
     "destination": "Destino",
     "date": "Data",
     "quantity": "Quantidade",
-    "familyContact": "Número Familiar",
-    "proceed": "Continuar para Pagamento",
-    "edit": "Editar Dados",
+    "familyContact": "Contacto Familiar",
+    "unitPrice": "Preço Unitário",
+    "totalPrice": "Preço Total",
+    "proceed": "Proceder para Pagamento",
+    "edit": "Editar Bilhete",
     "back": "Voltar",
-    "noTicket": "Nenhum bilhete encontrado. Volte e preencha os dados."
+    "noTicket": "Nenhum bilhete encontrado. Preencha o formulário primeiro."
   },
   "paymentMethod": {
     "title": "Método de Pagamento",
