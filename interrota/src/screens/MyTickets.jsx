@@ -24,7 +24,7 @@ const MyTickets = () => {
             {tickets.map((ticket, i) => (
               <div
                 key={i}
-                className="rounded-2xl p-5 shadow-xl border border-[#27A614]/30
+                classNaame="rounded-2xl p-5 shadow-xl border border-[#27A614]/30
                            bg-white/30 backdrop-blur-md text-[#0A7307] transition hover:scale-[1.02]"
               >
                 <h3 className="text-lg font-bold">{ticket.destination}</h3>
