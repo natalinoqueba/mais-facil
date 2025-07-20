@@ -90,11 +90,16 @@
   },
   "myTickets": {
     "title": "Meus Bilhetes",
-    "none": "Você ainda não adquiriu nenhum bilhete.",
+    "none": "Nenhum bilhete encontrado.",
     "company": "Companhia",
     "date": "Data",
     "quantity": "Quantidade",
-    "familyContact": "Número Familiar"
+    "familyContact": "Número Familiar",
+    "ticketNumber": "Número do Bilhete",
+    "departure": "Local de Partida",
+    "unitPrice": "Preço Unitário",
+    "totalPrice": "Preço Total",
+    "download": "Baixar"
   },
   "ticketDetails": {
     "title": "Detalhes do Bilhete",

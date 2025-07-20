@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import routeData from "../routes.json"; // ajuste o caminho se necessário
+import routeData from "../routes.json"; // ajuste o caminho conforme necessário
 
 const TicketDetails = () => {
   const { t } = useTranslation();
@@ -18,9 +18,24 @@ const TicketDetails = () => {
   const handleProceed = () => {
     if (!ticket) return;
 
+    const unitPrice = routeData[ticket.company]?.[ticket.destination] || 0;
+    const totalPrice = unitPrice * (parseInt(ticket.quantity) || 0);
+    const ticketNumber = ticket.ticketNumber || Math.floor(Math.random() * 900000000 + 100000000);
+
+    const fullTicket = {
+      ...ticket,
+      departure: "Nampula",
+      unitPrice,
+      totalPrice,
+      ticketNumber,
+      createdAt: new Date().toISOString(),
+    };
+
     const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
-    tickets.push(ticket);
+    tickets.push(fullTicket);
     localStorage.setItem("tickets", JSON.stringify(tickets));
+    localStorage.setItem("ticket", JSON.stringify(fullTicket)); // Atualiza o ticket atual
+
     navigate("/payment");
   };
 
@@ -38,8 +53,8 @@ const TicketDetails = () => {
     );
   }
 
-  const priceUnit = routeData[ticket.company]?.[ticket.destination] || 0;
-  const totalPrice = priceUnit * (parseInt(ticket.quantity) || 0);
+  const unitPrice = routeData[ticket.company]?.[ticket.destination] || 0;
+  const totalPrice = unitPrice * (parseInt(ticket.quantity) || 0);
 
   return (
     <div
@@ -51,34 +66,14 @@ const TicketDetails = () => {
       </h2>
 
       <ul className="space-y-2 text-left text-[#0A7307]">
-        <li>
-          <strong className="text-black">{t("ticketDetails.company")}:</strong>{" "}
-          {ticket.company}
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.destination")}:</strong>{" "}
-          {ticket.destination}
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.date")}:</strong>{" "}
-          {ticket.date}
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.quantity")}:</strong>{" "}
-          {ticket.quantity}
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.familyContact")}:</strong>{" "}
-          {ticket.familyContact}
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.unitPrice")}:</strong>{" "}
-          {priceUnit} MT
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.totalPrice")}:</strong>{" "}
-          {totalPrice} MT
-        </li>
+        <li><strong className="text-black">{t("ticketDetails.company")}:</strong> {ticket.company}</li>
+        <li><strong className="text-black">{t("ticketDetails.departure")}:</strong> Nampula</li>
+        <li><strong className="text-black">{t("ticketDetails.destination")}:</strong> {ticket.destination}</li>
+        <li><strong className="text-black">{t("ticketDetails.date")}:</strong> {ticket.date}</li>
+        <li><strong className="text-black">{t("ticketDetails.quantity")}:</strong> {ticket.quantity}</li>
+        <li><strong className="text-black">{t("ticketDetails.familyContact")}:</strong> {ticket.familyContact}</li>
+        <li><strong className="text-black">{t("ticketDetails.unitPrice")}:</strong> {unitPrice} MT</li>
+        <li><strong className="text-black">{t("ticketDetails.totalPrice")}:</strong> {totalPrice} MT</li>
       </ul>
 
       <div className="flex flex-col gap-3 mt-6">

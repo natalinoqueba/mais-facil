@@ -117,11 +117,16 @@
   },
   "myTickets": {
     "title": "My Tickets",
-    "none": "You haven't purchased any tickets yet.",
+    "none": "No tickets found.",
     "company": "Company",
     "date": "Date",
     "quantity": "Quantity",
-    "familyContact": "Family Contact"
+    "familyContact": "Family Contact",
+    "ticketNumber": "Ticket Number",
+    "departure": "Departure Location",
+    "unitPrice": "Unit Price",
+    "totalPrice": "Total Price",
+    "download": "Download"
   },
   "pdf": {
     "title": "+Facil Ticket",
