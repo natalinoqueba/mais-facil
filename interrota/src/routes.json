@@ -16,14 +16,10 @@
     "Maputo": 4500
   },
   "CBI": {
-    "Beira": 1000,
-    "Chimoio": 1200,
-    "Tete": 4500,
-    "Quelimane": 4500,
-    "Lichinga": 4500,
-    "Maputo": 4500,
-    "Montepuez": 4500,
-    "Pemba": 4500
+    "Beira": 2600,
+    "Chimoio": 2300,
+    "Tete": 3500,
+    "Maputo": 4500
   },
   "ETRAGO": {
     "Pemba": 900,
