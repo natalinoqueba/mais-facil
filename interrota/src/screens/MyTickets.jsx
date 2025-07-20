@@ -51,7 +51,7 @@ const MyTickets = () => {
 
       doc.setFontSize(10);
       doc.setTextColor(100);
-      doc.text("Suporte: (+258) 84 123 4567 | www.maisfacil.com", 20, 134);
+      doc.text('Suporte: (+258) 84 624 8290 | (+258) 87 383 5760 | Facilnampula@gmail.com', 20, 162);
 
       doc.save(`bilhete-${ticket.ticketNumber}.pdf`);
     };
@@ -71,7 +71,7 @@ const MyTickets = () => {
             {tickets.map((ticket, i) => (
               <div
                 key={i}
-                className="flex justify-between items-center p-4 shadow-md border border-[#27A614]/30 bg-white/30 backdrop-blur-md text-[#0A7307]"
+                className="flex rounded-lg justify-between items-center p-4 shadow-md border border-[#27A614]/30 bg-white/30 backdrop-blur-md text-[#0A7307]"
               >
                 <div>
                   <h3 className="text-lg font-bold">
@@ -101,7 +101,7 @@ const MyTickets = () => {
                 </div>
                 <button
                   onClick={() => handleDownload(ticket)}
-                  className="bg-[#27A614] text-white py-2 px-4 hover:bg-[#1F8B0F] transition shadow-md"
+                  className="bg-[#27A614] text-white py-2 px-4 hover:bg-[#1F8B0F] transition shadow-md rounded-md"
                 >
                   {t("myTickets.download")}
                 </button>

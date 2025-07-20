@@ -60,7 +60,7 @@ const CompanySelector = () => {
               className="
                 cursor-pointer bg-white border border-[#27A614]/40 rounded-xl shadow-xl
                 hover:shadow-lg hover:scale-[1.02] transition-all duration-300
-                flex flex-col items-center min-
+                flex flex-col items-center overflow-hidden
               "
             >
               <img

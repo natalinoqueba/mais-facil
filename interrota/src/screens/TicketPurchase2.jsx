@@ -192,10 +192,10 @@ const TicketPurchase = () => {
       {/* Preços */}
       {form.company && (
         <div className="text-sm text-[#0A7307] font-medium space-y-1">
-          <div>
+          {/* <div>
             {t("ticket.unitPrice")}:{" "}
             <span className="font-bold">{unitPrice} MT</span>
-          </div>
+          </div> */}
           {form.quantity && (
             <div>
               {t("ticket.totalPrice")}:{" "}

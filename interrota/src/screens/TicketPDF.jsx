@@ -71,7 +71,7 @@ const TicketPDF = () => {
       // Suporte
       doc.setFontSize(10);
       doc.setTextColor(100);
-      doc.text('Suporte: (+258) 84 123 4567 | www.maisfacil.com', 20, 162);
+      doc.text('Suporte: (+258) 84 624 8290 | (+258) 87 383 5760 | Facilnampula@gmail.com', 20, 162);
 
       // Salvar PDF
       doc.save('interrota-bilhete.pdf');
