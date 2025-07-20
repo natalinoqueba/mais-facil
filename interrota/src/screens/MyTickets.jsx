@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { jsPDF } from "jspdf";
 
 const MyTickets = () => {
   const { t } = useTranslation();
   const [tickets, setTickets] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const stored = localStorage.getItem("tickets");
@@ -107,6 +109,15 @@ const MyTickets = () => {
             ))}
           </div>
         )}
+        <button
+          onClick={() => navigate("/mainmenu")}
+          className="
+            mt-6 px-6 py-3 bg-gray-200 text-gray-800 rounded-md
+            hover:bg-gray-300 transition font-medium
+          "
+        >
+          {t("ticket.back")}
+        </button>
       </div>
     </div>
   );

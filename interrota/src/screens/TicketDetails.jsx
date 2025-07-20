@@ -66,12 +66,12 @@ const TicketDetails = () => {
       </h2>
 
       <ul className="space-y-2 text-left text-[#0A7307]">
+        <li><strong className="text-black">{t("ticketDetails.familyContact")}:</strong> {ticket.familyContact}</li>
         <li><strong className="text-black">{t("ticketDetails.company")}:</strong> {ticket.company}</li>
-        <li><strong className="text-black">{t("ticketDetails.departure")}:</strong> Nampula</li>
+        {/* <li><strong className="text-black">{t("ticketDetails.departure")}:</strong> Nampula</li> */}
         <li><strong className="text-black">{t("ticketDetails.destination")}:</strong> {ticket.destination}</li>
         <li><strong className="text-black">{t("ticketDetails.date")}:</strong> {ticket.date}</li>
         <li><strong className="text-black">{t("ticketDetails.quantity")}:</strong> {ticket.quantity}</li>
-        <li><strong className="text-black">{t("ticketDetails.familyContact")}:</strong> {ticket.familyContact}</li>
         <li><strong className="text-black">{t("ticketDetails.unitPrice")}:</strong> {unitPrice} MT</li>
         <li><strong className="text-black">{t("ticketDetails.totalPrice")}:</strong> {totalPrice} MT</li>
       </ul>
