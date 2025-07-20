@@ -53,6 +53,7 @@
   "ticket": {
     "title": "Ticket Purchase",
     "company": "Company",
+    "departure": "Departure Location",
     "destination": "Destination",
     "date": "Date",
     "quantity": "Quantity",

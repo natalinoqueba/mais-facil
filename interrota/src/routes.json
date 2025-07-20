@@ -21,9 +21,8 @@
     "Maputo": 4500
   },
   "ETRAGO": {
-    "Quelimane": 900,
-    "Lichinga": 3500,
-    "Maputo": 4700
+    "Pemba": 900,
+    "Maputo": 4500
   },
   "CITYLINK": {
     "Tete": 1400,
@@ -31,9 +30,16 @@
     "Maputo": 4300
   },
   "NAGI": {
-    "Maputo": 4400,
-    "Xai-Xai": 4100,
-    "Maxixe": 4000
+    "Lichinga": 1300,
+    "Cuamba": 700,
+    "Beira": 2500,
+    "Gorongosa": 2000,
+    "Pemba": 900,
+    "Montepuez": 900,
+    "Quelimane": 1200,
+    "Nicuadala": 1200,
+    "Tete": 3800,
+    "Inchope": 2200
   },
   "ESTA NA MODA": {
     "Beira": 1100,
