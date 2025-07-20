@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <div
       className="
-        min-h-vh mt-16
+        min-h-11/12 mt-16
         bg-white/30 backdrop-blur-md
         rounded
         p-6 space-y-6 mb-32
