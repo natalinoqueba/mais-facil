@@ -21,7 +21,7 @@ const companies = [
   },
   {
     name: "ESTA NA MODA",
-    image: "/images/esta-na-moda.png",
+    image: "/images/esta-na-moda.jpg",
   },
   {
     name: "NAGI",
