@@ -2,9 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const TourCard = ({ image, alt, title, location }) => {
-  const navigate = useNavigate();
-
+const TourCard = ({ image, alt, title, location, onSelect }) => {
   return (
     <div
       className="
@@ -14,13 +12,13 @@ const TourCard = ({ image, alt, title, location }) => {
         aspect-square
         flex flex-col
       "
-      onClick={() => navigate("/ticket")}
+      onClick={() => onSelect(location)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === "Enter") navigate("/ticket");
+        if (e.key === "Enter") onSelect(location);
       }}
-      aria-label={`Ver detalhes do tour: ${title}`}
+      aria-label={`Selecionar província: ${title}`}
     >
       <img
         src={image}
@@ -53,6 +51,11 @@ const MainMenu = () => {
     { image: "/images/niassa.jpg", alt: "Niassa", title: "Niassa", location: "Lichinga" }
   ];
 
+  const handleProvinceSelect = (province) => {
+    localStorage.setItem("selectedProvince", province);
+    navigate("/companies");
+  };
+
   return (
     <div
       className="
@@ -75,10 +78,10 @@ const MainMenu = () => {
           <h2 className="text-3xl font-bold text-[#0A7307] mb-6 select-none">
             +Facil
           </h2>
-          <p className="text-lg text-gray-800 mb-6">
+          {/* <p className="text-lg text-gray-800 mb-6">
             Descubra a beleza e a riqueza cultural de Moçambique com a +Facil!
             Explore destinos incríveis, compre passagens com facilidade e planeje sua próxima aventura com segurança e praticidade.
-          </p>
+          </p> */}
           <div className="space-y-4 max-w-sm mx-auto">
             <button
               onClick={() => navigate("/companies")}
@@ -129,6 +132,7 @@ const MainMenu = () => {
               alt={tour.alt}
               title={tour.title}
               location={tour.location}
+              onSelect={handleProvinceSelect}
             />
           ))}
         </div>

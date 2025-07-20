@@ -45,11 +45,11 @@ const CompanySelector = () => {
             <h2 className="text-3xl font-bold text-[#0A7307] mb-8">
               {t("company.title")}
             </h2>
-            <p>
+            {/* <p>
               Escolha a sua companhia de viagem preferida com a +Facil e comece a
               planejar a sua próxima aventura por Moçambique! Selecione uma das
               opções abaixo e compre sua passagem com rapidez e segurança.
-            </p>
+            </p> */}
         </div>
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">     */}
         <div className=" grid grid-cols-2 md:grid-cols-3 gap-6">
