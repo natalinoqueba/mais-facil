@@ -15,6 +15,7 @@ import TicketPDF from "./screens/TicketPDF"; // Assuming this is the route for P
 import Footer from "./components/Footer";
 import MyTickets from "./screens/MyTickets";
 import CompanySelector from "./screens/CompanySelector";
+import TicketPurchase2 from "./screens/TicketPurchase2";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/ticket" element={<TicketPurchase />} />
+        <Route path="/ticket2" element={<TicketPurchase2 />} />
         <Route path="/ticket-details" element={<TicketDetails />} />
         <Route path="/mytickets" element={<MyTickets />} />
         <Route path="/payment" element={<Payment />} />

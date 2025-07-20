@@ -47,13 +47,13 @@ const MainMenu = () => {
     { image: "/images/tete.jpg", alt: "Tete", title: "Tete", location: "Tete" },
     { image: "/images/zambezia.jpg", alt: "Zambézia", title: "Zambézia", location: "Quelimane" },
     { image: "/images/nampula.jpg", alt: "Nampula", title: "Nampula", location: "Nampula" },
-    { image: "/images/cabo-delgado.jpg", alt: "Cabo Delgado", title: "Cabo Delgado", location: "Cabo Delgado" },
+    { image: "/images/cabo-delgado.jpg", alt: "Cabo Delgado", title: "Cabo Delgado", location: "Pemba" },
     { image: "/images/niassa.jpg", alt: "Niassa", title: "Niassa", location: "Lichinga" }
   ];
 
   const handleProvinceSelect = (province) => {
     localStorage.setItem("selectedProvince", province);
-    navigate("/companies");
+    navigate("/ticket2");
   };
 
   return (
