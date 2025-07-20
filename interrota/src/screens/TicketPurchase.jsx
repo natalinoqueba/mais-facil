@@ -6,13 +6,14 @@ import routeData from "../routes.json"; // ajuste o caminho conforme seu projeto
 const TicketPurchase = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const selectedCompany = localStorage.getItem("selectedCompany");
 
   const [form, setForm] = useState({
-    company: "",
+    company: selectedCompany,
     departure: "Nampula", // local de partida fixo
     destination: "",
     date: "",
-    quantity: "",
+    quantity: 1,
     familyContact: "",
   });
 
@@ -20,7 +21,6 @@ const TicketPurchase = () => {
 
   useEffect(() => {
     const savedTicket = localStorage.getItem("ticket");
-    const selectedCompany = localStorage.getItem("selectedCompany");
     const selectedProvince = localStorage.getItem("selectedProvince");
 
     if (savedTicket) {
@@ -115,7 +115,7 @@ const TicketPurchase = () => {
           id="departure"
           value={form.departure}
           disabled
-          className="w-full p-3 border rounded-md bg-gray-100 text-gray-700"
+          className="w-full p-3 border  rounded-md bg-gray-100 text-gray-700"
         >
           <option value="Nampula">Nampula</option>
         </select>
@@ -150,7 +150,7 @@ const TicketPurchase = () => {
           type="date"
           value={form.date}
           onChange={handleChange}
-          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+          className="w-full p-3 border  rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
         />
       </div>
 
@@ -186,9 +186,14 @@ const TicketPurchase = () => {
       {/* Preços */}
       {form.destination && (
         <div className="mt-4 p-3 bg-white/60 rounded-md text-[#0A7307]">
-          <p>Preço unitário: <span className="font-semibold">{unitPrice} MT</span></p>
+          <p>
+            Preço unitário:{" "}
+            <span className="font-semibold">{unitPrice} MT</span>
+          </p>
           {form.quantity && (
-            <p>Total: <span className="font-bold">{total} MT</span></p>
+            <p>
+              Total: <span className="font-bold">{total} MT</span>
+            </p>
           )}
         </div>
       )}

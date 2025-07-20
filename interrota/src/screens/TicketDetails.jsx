@@ -38,8 +38,7 @@ const TicketDetails = () => {
     );
   }
 
-  const priceUnit =
-    routeData[ticket.company]?.[ticket.destination] || 0;
+  const priceUnit = routeData[ticket.company]?.[ticket.destination] || 0;
   const totalPrice = priceUnit * (parseInt(ticket.quantity) || 0);
 
   return (
@@ -53,36 +52,28 @@ const TicketDetails = () => {
 
       <ul className="space-y-2 text-left text-[#0A7307]">
         <li>
-          <strong className="text-black">{t("ticketDetails.company")}:</strong>{" "}
-          {ticket.company}
+          <strong className="text-black">{t("ticket.departure")}:</strong> Nampula
         </li>
         <li>
-          <strong className="text-black">
-            {t("ticketDetails.destination")}:
-          </strong>{" "}
-          {ticket.destination}
+          <strong className="text-black">{t("ticketDetails.company")}:</strong> {ticket.company}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.date")}:</strong>{" "}
-          {ticket.date}
+          <strong className="text-black">{t("ticketDetails.destination")}:</strong> {ticket.destination}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.quantity")}:</strong>{" "}
-          {ticket.quantity}
+          <strong className="text-black">{t("ticketDetails.date")}:</strong> {ticket.date}
         </li>
         <li>
-          <strong className="text-black">
-            {t("ticketDetails.familyContact")}:
-          </strong>{" "}
-          {ticket.familyContact}
+          <strong className="text-black">{t("ticketDetails.quantity")}:</strong> {ticket.quantity}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.unitPrice")}:</strong>{" "}
-          {priceUnit} MT
+          <strong className="text-black">{t("ticketDetails.familyContact")}:</strong> {ticket.familyContact}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.totalPrice")}:</strong>{" "}
-          {totalPrice} MT
+          <strong className="text-black">{t("ticketDetails.unitPrice")}:</strong> {priceUnit} MT
+        </li>
+        <li>
+          <strong className="text-black">{t("ticketDetails.totalPrice")}:</strong> {totalPrice} MT
         </li>
       </ul>
 
