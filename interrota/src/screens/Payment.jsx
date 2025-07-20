@@ -37,7 +37,7 @@ const Payment = () => {
         </h2>
 
         <div className="space-y-4">
-          {['Mpesa', 'Emola'].map((option) => (
+          {['Mpesa', 'Emola', 'Millennium'].map((option) => (
             <div className="flex items-center gap-3" key={option}>
               <input
                 type="radio"
