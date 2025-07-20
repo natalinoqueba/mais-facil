@@ -62,6 +62,8 @@
     "back": "Back",
     "error": "Please fill in all fields correctly!",
     "success": "Ticket ready!",
+    "unitPrice": "Unit Price",
+    "totalPrice": "Total Price",
     "placeholders": {
       "quantity": "Quantity",
       "selectDestination": "Select Destination",

@@ -1,39 +1,40 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import routeData from "../routes.json"; // ajuste o caminho conforme seu projeto
+import routeData from "../routes.json"; // ajuste o caminho conforme necessário
 
 const TicketPurchase = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const selectedCompany = localStorage.getItem("selectedCompany");
+  const location = useLocation();
 
   const [form, setForm] = useState({
-    company: selectedCompany,
-    departure: "Nampula", // local de partida fixo
+    company: "",
     destination: "",
     date: "",
-    quantity: 1,
+    quantity: "1", // valor predefinido
     familyContact: "",
   });
 
   const [message, setMessage] = useState({ type: "", text: "" });
 
   useEffect(() => {
-    const savedTicket = localStorage.getItem("ticket");
-    const selectedProvince = localStorage.getItem("selectedProvince");
+    const selectedCompany = localStorage.getItem("selectedCompany");
 
-    if (savedTicket) {
-      setForm(JSON.parse(savedTicket));
-    } else {
-      setForm((prev) => ({
-        ...prev,
-        company: selectedCompany || "",
-        destination: selectedProvince || "",
-        departure: "Nampula",
-      }));
+    // Só carrega o ticket salvo se veio de TicketDetails
+    if (location.state?.fromDetails) {
+      const savedTicket = localStorage.getItem("ticket");
+      if (savedTicket) {
+        setForm(JSON.parse(savedTicket));
+        return;
+      }
     }
-  }, []);
+
+    // Caso contrário, apenas preenche a companhia selecionada
+    if (selectedCompany) {
+      setForm((prev) => ({ ...prev, company: selectedCompany }));
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -68,7 +69,7 @@ const TicketPurchase = () => {
 
   const destinations =
     form.company && routeData[form.company]
-      ? Object.keys(routeData[form.company])
+      ? Object.entries(routeData[form.company])
       : [];
 
   const unitPrice = form.destination
@@ -106,16 +107,16 @@ const TicketPurchase = () => {
         </select>
       </div>
 
-      {/* Local de Partida */}
+      {/* Local de partida */}
       <div>
         <label htmlFor="departure" className="block mb-1 font-medium">
           {t("ticket.departure")}
         </label>
         <select
           id="departure"
-          value={form.departure}
+          value="Nampula"
           disabled
-          className="w-full p-3 border  rounded-md bg-gray-100 text-gray-700"
+          className="w-full p-3 border rounded-md bg-gray-100 text-[#0A7307] cursor-not-allowed"
         >
           <option value="Nampula">Nampula</option>
         </select>
@@ -134,7 +135,7 @@ const TicketPurchase = () => {
           className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614] disabled:opacity-50"
         >
           <option value="">{t("ticket.placeholders.selectDestination")}</option>
-          {destinations.map((dest) => (
+          {destinations.map(([dest]) => (
             <option key={dest} value={dest}>
               {dest}
             </option>
@@ -150,7 +151,7 @@ const TicketPurchase = () => {
           type="date"
           value={form.date}
           onChange={handleChange}
-          className="w-full p-3 border  rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
         />
       </div>
 
@@ -183,17 +184,17 @@ const TicketPurchase = () => {
         />
       </div>
 
-      {/* Preços */}
+      {/* Preço */}
       {form.destination && (
-        <div className="mt-4 p-3 bg-white/60 rounded-md text-[#0A7307]">
-          <p>
-            Preço unitário:{" "}
-            <span className="font-semibold">{unitPrice} MT</span>
-          </p>
+        <div className="text-sm text-[#0A7307] font-medium space-y-1">
+          <div>
+            {t("ticket.unitPrice")}: <span className="font-bold">{unitPrice} MT</span>
+          </div>
           {form.quantity && (
-            <p>
-              Total: <span className="font-bold">{total} MT</span>
-            </p>
+            <div>
+              {t("ticket.totalPrice")}:{" "}
+              <span className="font-bold">{total} MT</span>
+            </div>
           )}
         </div>
       )}
@@ -220,7 +221,7 @@ const TicketPurchase = () => {
           {t("ticket.continue")}
         </button>
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/companies")}
           className="bg-white/50 text-[#0A7307] py-2 rounded-md hover:bg-white transition border border-[#27A614]/20"
         >
           {t("ticket.back")}

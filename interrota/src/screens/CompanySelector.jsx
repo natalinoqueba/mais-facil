@@ -42,10 +42,10 @@ const CompanySelector = () => {
     <div className="min-h-screen pt-[95px] px-4 pb-12 bg-white text-black font-sfpro">
       <div className="max-w-5xl mx-auto text-center">
         <div className=" pt-[1px] px- pb-5 bg-white ">
-            <h2 className="text-3xl font-bold text-[#0A7307] mb-8">
-              {t("company.title")}
-            </h2>
-            {/* <p>
+          <h2 className="text-3xl font-bold text-[#0A7307] mb-8">
+            {t("company.title")}
+          </h2>
+          {/* <p>
               Escolha a sua companhia de viagem preferida com a +Facil e comece a
               planejar a sua próxima aventura por Moçambique! Selecione uma das
               opções abaixo e compre sua passagem com rapidez e segurança.
@@ -74,6 +74,15 @@ const CompanySelector = () => {
             </div>
           ))}
         </div>
+        <button
+          onClick={() => navigate("/mainmenu")}
+          className="
+            mt-6 px-6 py-3 bg-gray-200 text-gray-800 rounded-md
+            hover:bg-gray-300 transition font-medium
+          "
+        >
+          {t("ticket.back")}
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import routeData from "../routes.json"; // ajuste o caminho conforme necessário
+import routeData from "../routes.json"; // ajuste o caminho se necessário
 
 const TicketDetails = () => {
   const { t } = useTranslation();
@@ -52,28 +52,32 @@ const TicketDetails = () => {
 
       <ul className="space-y-2 text-left text-[#0A7307]">
         <li>
-          <strong className="text-black">{t("ticket.departure")}:</strong> Nampula
+          <strong className="text-black">{t("ticketDetails.company")}:</strong>{" "}
+          {ticket.company}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.company")}:</strong> {ticket.company}
+          <strong className="text-black">{t("ticketDetails.destination")}:</strong>{" "}
+          {ticket.destination}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.destination")}:</strong> {ticket.destination}
+          <strong className="text-black">{t("ticketDetails.date")}:</strong>{" "}
+          {ticket.date}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.date")}:</strong> {ticket.date}
+          <strong className="text-black">{t("ticketDetails.quantity")}:</strong>{" "}
+          {ticket.quantity}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.quantity")}:</strong> {ticket.quantity}
+          <strong className="text-black">{t("ticketDetails.familyContact")}:</strong>{" "}
+          {ticket.familyContact}
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.familyContact")}:</strong> {ticket.familyContact}
+          <strong className="text-black">{t("ticketDetails.unitPrice")}:</strong>{" "}
+          {priceUnit} MT
         </li>
         <li>
-          <strong className="text-black">{t("ticketDetails.unitPrice")}:</strong> {priceUnit} MT
-        </li>
-        <li>
-          <strong className="text-black">{t("ticketDetails.totalPrice")}:</strong> {totalPrice} MT
+          <strong className="text-black">{t("ticketDetails.totalPrice")}:</strong>{" "}
+          {totalPrice} MT
         </li>
       </ul>
 
@@ -85,7 +89,7 @@ const TicketDetails = () => {
           {t("ticketDetails.proceed")}
         </button>
         <button
-          onClick={() => navigate("/ticket")}
+          onClick={() => navigate("/ticket", { state: { fromDetails: true } })}
           className="bg-white/50 text-[#0A7307] py-2 rounded-md hover:bg-white transition border border-[#27A614]/20"
         >
           {t("ticketDetails.edit")}

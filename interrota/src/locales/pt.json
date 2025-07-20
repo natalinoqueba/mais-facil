@@ -68,6 +68,8 @@
     "back": "Voltar",
     "error": "Preencha todos os campos corretamente!",
     "success": "Bilhete preparado!",
+    "unitPrice": "Preço Unitário",
+    "totalPrice": "Preço Total",
     "placeholders": {
       "quantity": "Quantidade",
       "selectDestination": "Selecione o Destino",
