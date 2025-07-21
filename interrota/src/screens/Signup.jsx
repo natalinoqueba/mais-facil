@@ -11,7 +11,7 @@ const Signup = () => {
     contact: "",
     address: "",
     familyContact: "",
-    location: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -123,21 +123,24 @@ const Signup = () => {
           )}
         </div>
 
-        {/* Bairro (Opcional) */}
+        {/* Senha */}
         <div>
           <label className="block mb-1 font-medium">
-            {t("signup.location")}{" "}
+            {t("signup.password")}
           </label>
-          <select
-            id="location"
-            value={form.location}
+          <input
+            id="password"
+            type="password"
+            value={form.password}
             onChange={handleChange}
-            className="w-full p-3 border border-[#27A614] rounded-md bg-white text-black"
-          >
-            <option value="">{t("signup.placeholders.selectLocation")}</option>
-            <option value="Muahivire">{t("signup.options.muahivire")}</option>
-            <option value="Namikopo">{t("signup.options.namikopo")}</option>
-          </select>
+            placeholder={t("signup.placeholders.password")}
+            className={`w-full p-3 border border-[#27A614] rounded-md text-black ${
+              errors.password ? "border-red-500" : ""
+            }`}
+          />
+          {errors.password && (
+            <p className="text-red-600 text-sm mt-1"> {errors.password}</p>
+          )}
         </div>
 
         {/* Botões */}

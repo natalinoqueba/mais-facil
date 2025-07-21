@@ -28,21 +28,23 @@
     "contact": "Contact",
     "address": "Address",
     "familyContact": "Family Contact",
-    "location": "Location (optional)",
+    "password": "Password",
     "continue": "Continue",
     "back": "Back",
-    "error": "Please fill all fields correctly!",
+    "errors": {
+      "name": "Please enter your name.",
+      "contact": "Invalid contact number.",
+      "address": "Please enter your address.",
+      "familyContact": "Invalid family contact.",
+      "password": "Password is required."
+    },
     "success": "Account created successfully!",
     "placeholders": {
       "name": "Enter your name",
       "contact": "84xxxxxxx",
       "address": "Enter your address",
       "familyContact": "84xxxxxxx",
-      "selectLocation": "Select a neighborhood"
-    },
-    "options": {
-      "muahivire": "Muahivire",
-      "namikopo": "Namikopo"
+      "password": "Enter your password"
     }
   },
   "menu": {

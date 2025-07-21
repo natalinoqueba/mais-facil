@@ -5,7 +5,7 @@
     "login": "Fazer Login",
     "signup": "Criar Conta"
   },
- "login": {
+  "login": {
     "title": "Login",
     "name": "Nome",
     "password": "Senha",
@@ -28,7 +28,7 @@
     "contact": "Contacto",
     "address": "Moradia",
     "familyContact": "Número Familiar",
-    "location": "Localização (opcional)",
+    "password": "Senha",
     "continue": "Continuar",
     "back": "Voltar",
     "errors": {
@@ -36,7 +36,7 @@
       "contact": "Número de contacto inválido.",
       "address": "Por favor, insira a sua morada.",
       "familyContact": "Contacto familiar inválido.",
-      "location": "Selecione a sua localização."
+      "password": "A senha é obrigatória"
     },
     "success": "Conta criada com sucesso!",
     "placeholders": {
@@ -44,11 +44,7 @@
       "contact": "84xxxxxxx",
       "address": "Digite sua moradia",
       "familyContact": "84xxxxxxx",
-      "selectLocation": "Selecione um bairro"
-    },
-    "options": {
-      "muahivire": "Muahivire",
-      "namikopo": "Namikopo"
+      "password": "Digite sua senha"
     }
   },
   "menu": {
