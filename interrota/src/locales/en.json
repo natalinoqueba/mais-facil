@@ -8,18 +8,18 @@
   "login": {
     "title": "Login",
     "name": "Name",
-    "contact": "Contact",
+    "password": "Password",
     "continue": "Continue",
     "back": "Back",
-    "error": "Please enter your name and a valid contact!",
+    "error": "Please enter your name and a valid password!",
     "success": "Login successful!",
     "placeholders": {
       "name": "Enter your name",
-      "contact": "84xxxxxxx"
+      "password": "Enter your password"
     },
     "errors": {
       "name": "Please enter your name.",
-      "contact": "Invalid contact number."
+      "password": "Password is required."
     }
   },
   "signup": {

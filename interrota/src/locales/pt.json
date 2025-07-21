@@ -5,21 +5,21 @@
     "login": "Fazer Login",
     "signup": "Criar Conta"
   },
-  "login": {
+ "login": {
     "title": "Login",
     "name": "Nome",
-    "contact": "Contacto",
+    "password": "Senha",
     "continue": "Continuar",
     "back": "Voltar",
-    "error": "Preencha o nome e um contacto válido!",
+    "error": "Preencha o nome e uma senha válida!",
     "success": "Login efetuado com sucesso!",
     "placeholders": {
       "name": "Digite seu nome",
-      "contact": "84xxxxxxx"
+      "password": "Digite sua senha"
     },
     "errors": {
       "name": "Por favor, insira o seu nome.",
-      "contact": "Número de contacto inválido."
+      "password": "A senha é obrigatória."
     }
   },
   "signup": {

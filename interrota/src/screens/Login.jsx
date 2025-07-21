@@ -6,7 +6,7 @@ const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ name: "", contact: "" });
+  const [form, setForm] = useState({ name: "", password: "" });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({ type: "", text: "" });
 
@@ -16,13 +16,13 @@ const Login = () => {
     setErrors((prev) => ({ ...prev, [id]: "" }));
   };
 
-  const validateContact = (c) => /^[89]\d{8}$/.test(c);
+  const validatePassword = (p) => p.length > 0;
 
   const handleLogin = () => {
     const newErrors = {};
     if (!form.name) newErrors.name = t("login.errors.name");
-    if (!validateContact(form.contact))
-      newErrors.contact = t("login.errors.contact");
+    if (!validatePassword(form.password))
+      newErrors.password = t("login.errors.password");
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -32,7 +32,7 @@ const Login = () => {
 
     const userData = {
       name: form.name,
-      contact: form.contact,
+      password: form.password,
       address: "",
       familyContact: "",
     };
@@ -83,24 +83,24 @@ const Login = () => {
         )}
       </div>
 
-      {/* Contacto */}
+      {/* Senha */}
       <div>
-        <label htmlFor="contact" className="block mb-1 font-semibold">
-          {t("login.contact")}
+        <label htmlFor="password" className="block mb-1 font-semibold">
+          {t("login.password")}
         </label>
         <input
-          id="contact"
-          type="tel"
-          value={form.contact}
+          id="password"
+          type="password"
+          value={form.password}
           onChange={handleChange}
-          placeholder={t("login.placeholders.contact")}
+          placeholder={t("login.placeholders.password")}
           className={`w-full p-4 bg-white/80 border rounded-xl text-gray-800 text-base focus:outline-none focus:ring-2 transition ${
-            errors.contact ? "border-red-500" : "border-[#27A614]"
+            errors.password ? "border-red-500" : "border-[#27A614]"
           }`}
-          autoComplete="off"
+          autoComplete="new-password"
         />
-        {errors.contact && (
-          <p className="text-red-600 text-sm mt-1"> {errors.contact}</p>
+        {errors.password && (
+          <p className="text-red-600 text-sm mt-1"> {errors.password}</p>
         )}
       </div>
 
