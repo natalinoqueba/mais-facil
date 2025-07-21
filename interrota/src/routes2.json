@@ -18,8 +18,7 @@
     "Khurula": 1500
   },
   "Gorogozá": {
-    "Khurula": 2100,
-    "NAGI": 2000
+    "Khurula": 2100
   },
   "Inchope": {
     "Khurula": 2200,
@@ -29,7 +28,8 @@
     "Khurula": 2500
   },
   "Rio Save": {
-    "Khurula": 3500
+    "Khurula": 3500,
+    "NAGI": 4500
   },
   "Cruzamento Vilanculo": {
     "Khurula": 4000
@@ -38,47 +38,58 @@
     "Khurula": 4500
   },
   "Xai-Xai": {
-    "Khurula": 4500
+    "Khurula": 4500,
+    "NAGI": 4500
   },
   "Maputo": {
     "Khurula": 4500,
+    "CBI": 4500,
     "ETRAGO": 4500,
-    "CITYLINK": 4300,
-    "ESTA NA MODA": 4600,
-    "CBI": 4500
+    "CITYLINK": 4500,
+    "NAGI": 4500,
+    "ESTA NA MODA": 4600
+  },
+  "Lichinga": {
+    "CBI": 1300,
+    "NAGI": 1300
   },
   "Beira": {
-    "CBI": 2600,
+    "CBI": 2500,
+    "CITYLINK": 2600,
     "NAGI": 2500,
     "ESTA NA MODA": 1100
   },
-  "Chimoio": {
-    "CBI": 2300,
-    "ESTA NA MODA": 1250
-  },
-  "Tete": {
-    "CBI": 3500,
-    "CITYLINK": 1400,
-    "NAGI": 3800
-  },
-  "Quelimane": {
-    "NAGI": 1200
-  },
-  "Lichinga": {
-    "NAGI": 1300
+  "Pemba": {
+    "CBI": 900,
+    "ETRAGO": 900,
+    "NAGI": 900
   },
   "Montepuez": {
+    "CBI": 900,
     "NAGI": 900
   },
-  "Pemba": {
-    "ETRAGO": 900,
-    "CITYLINK": 3000,
-    "NAGI": 900
+  "Quelimane": {
+    "CBI": 1200,
+    "NAGI": 1200
+  },
+  "Tete": {
+    "CBI": 3800,
+    "CITYLINK": 3500,
+    "NAGI": 3800
+  },
+  "Chimoio": {
+    "CBI": 2300,
+    "CITYLINK": 2300,
+    "NAGI": 2300,
+    "ESTA NA MODA": 1250
   },
   "Cuamba": {
     "NAGI": 700
   },
   "Nicuadala": {
     "NAGI": 1200
+  },
+  "Inhambane": {
+    "NAGI": 4500
   }
 }

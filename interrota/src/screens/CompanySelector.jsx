@@ -60,13 +60,13 @@ const CompanySelector = () => {
               className="
                 cursor-pointer bg-white border border-[#27A614]/40 rounded-xl shadow-xl
                 hover:shadow-lg hover:scale-[1.02] transition-all duration-300
-                flex flex-col items-center overflow-hidden
+                flex flex-col items-center overflow-hidden w-fit
               "
             >
               <img
                 src={company.image}
                 alt={company.name}
-                className="w-40 h-40 mb-4"
+                className="w-40 h-40"
               />
               {/* <h3 className="text-lg font-semibold text-[#0A7307]">
                 {company.name}
