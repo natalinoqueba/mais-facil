@@ -7,7 +7,7 @@
     "Zero": 1300,
     "Khaia": 1500,
     "Gorogozá": 2100,
-    "Enshoping": 2200,
+    "Inchope": 2200,
     "Muchuecue": 2500,
     "Rio Save": 3500,
     "Cruzamento Vilanculo": 4000,
@@ -16,9 +16,13 @@
     "Maputo": 4500
   },
   "CBI": {
-    "Beira": 2600,
+    "Lichinga": 1300,
+    "Beira": 2500,
+    "Pemba": 900,
+    "Montepuez": 900,
+    "Quelimane": 1200,
+    "Tete": 3800,
     "Chimoio": 2300,
-    "Tete": 3500,
     "Maputo": 4500
   },
   "ETRAGO": {
@@ -26,9 +30,10 @@
     "Maputo": 4500
   },
   "CITYLINK": {
-    "Tete": 1400,
-    "Pemba": 3000,
-    "Maputo": 4300
+    "Tete": 3500,
+    "Beira": 2600,
+    "Maputo": 4500,
+    "Chimoio": 2300
   },
   "NAGI": {
     "Lichinga": 1300,
@@ -40,7 +45,12 @@
     "Quelimane": 1200,
     "Nicuadala": 1200,
     "Tete": 3800,
-    "Inchope": 2200
+    "Inchope": 2200,
+    "Xai-Xai": 4500,
+    "Inhambane": 4500,
+    "Rio Save": 4500,
+    "Chimoio": 2300,
+    "Maputo": 4500
   },
   "ESTA NA MODA": {
     "Beira": 1100,

@@ -21,8 +21,9 @@
     "Khurula": 2100,
     "NAGI": 2000
   },
-  "Enshoping": {
-    "Khurula": 2200
+  "Inchope": {
+    "Khurula": 2200,
+    "NAGI": 2200
   },
   "Muchuecue": {
     "Khurula": 2500
@@ -79,8 +80,5 @@
   },
   "Nicuadala": {
     "NAGI": 1200
-  },
-  "Inchope": {
-    "NAGI": 2200
   }
 }
