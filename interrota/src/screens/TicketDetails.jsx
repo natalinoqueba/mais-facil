@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import routeData from "../routes.json"; // ajuste o caminho conforme necessário
+import routeData from "../routes.json";
 
 const TicketDetails = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ const TicketDetails = () => {
     const tickets = JSON.parse(localStorage.getItem("tickets")) || [];
     tickets.push(fullTicket);
     localStorage.setItem("tickets", JSON.stringify(tickets));
-    localStorage.setItem("ticket", JSON.stringify(fullTicket)); // Atualiza o ticket atual
+    localStorage.setItem("ticket", JSON.stringify(fullTicket));
 
     navigate("/payment");
   };
@@ -68,10 +68,14 @@ const TicketDetails = () => {
       <ul className="space-y-2 text-left text-[#0A7307]">
         <li><strong className="text-black">{t("ticketDetails.familyContact")}:</strong> {ticket.familyContact}</li>
         <li><strong className="text-black">{t("ticketDetails.company")}:</strong> {ticket.company}</li>
-        {/* <li><strong className="text-black">{t("ticketDetails.departure")}:</strong> Nampula</li> */}
         <li><strong className="text-black">{t("ticketDetails.destination")}:</strong> {ticket.destination}</li>
         <li><strong className="text-black">{t("ticketDetails.date")}:</strong> {ticket.date}</li>
         <li><strong className="text-black">{t("ticketDetails.quantity")}:</strong> {ticket.quantity}</li>
+        {ticket.hasDisability === "yes" && (
+          <li>
+            <strong className="text-black">{t("ticketDetails.disability")}:</strong> {ticket.disabilityDetails}
+          </li>
+        )}
         <li><strong className="text-black">{t("ticketDetails.unitPrice")}:</strong> {unitPrice} MT</li>
         <li><strong className="text-black">{t("ticketDetails.totalPrice")}:</strong> {totalPrice} MT</li>
       </ul>

@@ -57,7 +57,7 @@ const Footer = () => {
         {/* Contato e redes sociais */}
         <div className="flex flex-col items-center md:items-end space-y-2 text-sm">
           <p>
-            Suporte:{" "}
+            Mais informações:{" "}
             <a
               href="tel:+258846248290"
               className=" hover:text-[#0A7307]"

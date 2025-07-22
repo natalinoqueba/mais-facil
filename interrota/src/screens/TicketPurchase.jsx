@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import routeData from "../routes.json"; // ajuste o caminho conforme necessário
+import routeData from "../routes.json";
 
 const TicketPurchase = () => {
   const { t } = useTranslation();
@@ -12,8 +12,10 @@ const TicketPurchase = () => {
     company: "",
     destination: "",
     date: "",
-    quantity: "1", // valor predefinido
+    quantity: "1",
     familyContact: "",
+    hasDisability: "no",
+    disabilityDetails: ""
   });
 
   const [message, setMessage] = useState({ type: "", text: "" });
@@ -21,7 +23,6 @@ const TicketPurchase = () => {
   useEffect(() => {
     const selectedCompany = localStorage.getItem("selectedCompany");
 
-    // Só carrega o ticket salvo se veio de TicketDetails
     if (location.state?.fromDetails) {
       const savedTicket = localStorage.getItem("ticket");
       if (savedTicket) {
@@ -30,7 +31,6 @@ const TicketPurchase = () => {
       }
     }
 
-    // Caso contrário, apenas preenche a companhia selecionada
     if (selectedCompany) {
       setForm((prev) => ({ ...prev, company: selectedCompany }));
     }
@@ -42,6 +42,7 @@ const TicketPurchase = () => {
       ...prev,
       [id]: value,
       ...(id === "company" ? { destination: "" } : {}),
+      ...(id === "hasDisability" && value === "no" ? { disabilityDetails: "" } : {})
     }));
   };
 
@@ -184,14 +185,44 @@ const TicketPurchase = () => {
         />
       </div>
 
+      {/* Deficiência */}
+      <div>
+        <label htmlFor="hasDisability" className="block mb-1 font-medium">
+         {t("ticket.hasDisability")}
+        </label>
+        <select
+          id="hasDisability"
+          value={form.hasDisability}
+          onChange={handleChange}
+          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+        >
+          <option value="no">{t("ticket.nohas")}</option>
+          <option value="yes">{t("ticket.yeashas")}</option>
+        </select>
+      </div>
+
+      {form.hasDisability === "yes" && (
+        <div>
+          <label htmlFor="disabilityDetails" className="block mb-1 font-medium">
+            {t("ticket.disabilityDetails")}
+          </label>
+          <input
+            id="disabilityDetails"
+            type="text"
+            value={form.disabilityDetails}
+            onChange={handleChange}
+            placeholder= {t("ticket.placeholders.disabilityDetails")}
+            className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+          />
+        </div>
+      )}
+
       {/* Preço */}
       {form.destination && (
         <div className="text-sm text-[#0A7307] font-medium space-y-1">
-          {/*    */}
           {form.quantity && (
             <div>
-              {t("ticket.totalPrice")}:{" "}
-              <span className="font-bold">{total} MT</span>
+              {t("ticket.totalPrice")}: <span className="font-bold">{total} MT</span>
             </div>
           )}
         </div>

@@ -1,82 +1,88 @@
 import React, { useEffect } from 'react';
 import { jsPDF } from 'jspdf';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { FileOpener } from '@capacitor-community/file-opener';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import routeData from '../routes.json'; // ajuste conforme necessário
+import routeData from '../routes.json';
 
 const TicketPDF = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   useEffect(() => {
-    const savedTicket = localStorage.getItem('ticket');
-    const userProfile = localStorage.getItem('userProfile');
+    const generatePDF = async () => {
+      const savedTicket = localStorage.getItem('ticket');
+      const userProfile = localStorage.getItem('userProfile');
+      const selectedPayment = localStorage.getItem('selectedPayment'); // método de pagamento
 
-    if (!savedTicket || !userProfile) return;
+      if (!savedTicket || !userProfile) return;
 
-    const ticket = JSON.parse(savedTicket);
-    const user = JSON.parse(userProfile);
+      const ticket = JSON.parse(savedTicket);
+      const user = JSON.parse(userProfile);
 
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString('pt-BR');
-    const formattedTime = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    const ticketNumber = Math.floor(Math.random() * 900000000 + 100000000);
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString('pt-BR');
+      const formattedTime = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      const ticketNumber = Math.floor(Math.random() * 900000000 + 100000000);
 
-    const priceUnit = routeData[ticket.company]?.[ticket.destination] || 0;
-    const totalPrice = priceUnit * (parseInt(ticket.quantity) || 1);
+      const priceUnit = routeData[ticket.company]?.[ticket.destination] || 0;
+      const totalPrice = priceUnit * (parseInt(ticket.quantity) || 1);
 
-    const doc = new jsPDF();
-    const logo = new Image();
-    logo.src = `${window.location.origin}/images/logo.png`;
-
-    logo.onload = () => {
-      // Logo
-      doc.addImage(logo, 'PNG', 80, 10, 50, 20);
-
-      // Título
+      const doc = new jsPDF();
       doc.setFontSize(14);
       doc.setTextColor('#0A7307');
-      doc.text(`Passagem de Carro - ${ticket.company}`, 20, 40);
+      doc.text(`Passagem de Carro - ${ticket.company}`, 20, 20);
 
-      // Separador
-      doc.setDrawColor(0);
-      doc.line(20, 43, 190, 43);
-
-      // Bilhete e data
       doc.setFontSize(12);
       doc.setTextColor(0);
-      doc.text(`Bilhete Nº: ${ticketNumber}`, 20, 50);
-      doc.text(`Data de Emissão: ${formattedDate} ${formattedTime}`, 20, 58);
-      doc.line(20, 62, 190, 62);
+      doc.text(`Bilhete Nº: ${ticketNumber}`, 20, 30);
+      doc.text(`Data de Emissão: ${formattedDate} ${formattedTime}`, 20, 38);
 
-      // Dados do passageiro
-      doc.text(`Passageiro: ${user.name}`, 20, 70);
-      doc.text(`Contacto: ${user.contact}`, 20, 78);
-      doc.line(20, 82, 190, 82);
+      doc.text(`Passageiro: ${user.name}`, 20, 48);
+      doc.text(`Contacto: ${user.contact}`, 20, 56);
 
-      // Viagem
-      doc.text(`Viagem: Nampula -> ${ticket.destination}`, 20, 90);
-      doc.text(`Data: ${ticket.date}`, 20, 98);
-      doc.text(`Horário: 08:00 - 10:00`, 20, 106);
-      doc.text(`Local de Embarque: Nampula`, 20, 114);
-      doc.line(20, 118, 190, 118);
+      doc.text(`Viagem: Nampula -> ${ticket.destination}`, 20, 66);
+      doc.text(`Data: ${ticket.date}`, 20, 74);
+      doc.text(`Horário: 08:00 - 10:00`, 20, 82);
+      doc.text(`Local de Embarque: Nampula`, 20, 90);
 
-      // Pagamento
-      doc.text(`Preço Unitário: MZN ${priceUnit.toFixed(2)}`, 20, 126);
-      doc.text(`Quantidade: ${ticket.quantity}`, 20, 134);
-      doc.text(`Valor Total: MZN ${totalPrice.toFixed(2)}`, 20, 142);
-      doc.text(`Pagamento: M-Pesa`, 20, 150);
-      doc.line(20, 154, 190, 154);
+      doc.text(`Preço Unitário: MZN ${priceUnit.toFixed(2)}`, 20, 100);
+      doc.text(`Quantidade: ${ticket.quantity}`, 20, 108);
+      doc.text(`Valor Total: MZN ${totalPrice.toFixed(2)}`, 20, 116);
+      doc.text(`Pagamento: ${selectedPayment || 'N/A'}`, 20, 124); // método de pagamento dinâmico
 
-      // Suporte
       doc.setFontSize(10);
       doc.setTextColor(100);
-      doc.text('Suporte: (+258) 84 624 8290 | (+258) 87 383 5760 | Facilnampula@gmail.com', 20, 162);
+      doc.text('Mais informações: (+258) 84 624 8290 | (+258) 87 383 5760 | Facilnampula@gmail.com', 20, 134);
 
-      // Salvar PDF
-      doc.save('interrota-bilhete.pdf');
+      const pdfOutput = doc.output('datauristring').split(',')[1];
+      const fileName = `bilhete-${ticketNumber}.pdf`;
+
+      try {
+        if (window.Capacitor?.isNativePlatform()) {
+          const result = await Filesystem.writeFile({
+            path: fileName,
+            data: pdfOutput,
+            directory: Directory.Documents,
+            encoding: Encoding.Base64,
+          });
+
+          await FileOpener.open({
+            filePath: result.uri,
+            contentType: 'application/pdf',
+          });
+        } else {
+          doc.save(fileName);
+        }
+      } catch (err) {
+        console.error('Erro ao salvar ou abrir PDF:', err);
+      }
+
       setTimeout(() => navigate('/mainmenu'), 1000);
     };
+
+    generatePDF();
   }, [navigate]);
 
   return (

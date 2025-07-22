@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { jsPDF } from "jspdf";
+import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
+import { FileOpener } from "@capacitor-community/file-opener";
 
 const MyTickets = () => {
   const { t } = useTranslation();
@@ -15,46 +17,59 @@ const MyTickets = () => {
     }
   }, []);
 
-  const handleDownload = (ticket) => {
+  const handleDownload = async (ticket) => {
     const doc = new jsPDF();
     const formattedDate = new Date(ticket.createdAt).toLocaleString("pt-BR");
 
-    // Logo
-    const logo = new Image();
-    logo.src = `${window.location.origin}/images/logo.png`;
+    doc.setFontSize(14);
+    doc.setTextColor("#0A7307");
+    doc.text(`Passagem - ${ticket.company}`, 20, 20);
 
-    logo.onload = () => {
-      doc.addImage(logo, "PNG", 80, 10, 50, 20);
+    doc.setFontSize(12);
+    doc.setTextColor(0);
+    doc.text(`Bilhete Nº: ${ticket.ticketNumber}`, 20, 30);
+    doc.text(`Data de Emissão: ${formattedDate}`, 20, 38);
 
-      doc.setFontSize(14);
-      doc.setTextColor("#0A7307");
-      doc.text(`Passagem - ${ticket.company}`, 20, 40);
-      doc.setDrawColor(0);
-      doc.line(20, 43, 190, 43);
+    doc.text(`Partida: ${ticket.departure}`, 20, 48);
+    doc.text(`Destino: ${ticket.destination}`, 20, 56);
+    doc.text(`Data da Viagem: ${ticket.date}`, 20, 64);
+    doc.text(`Quantidade: ${ticket.quantity}`, 20, 72);
+    doc.text(`Número Familiar: ${ticket.familyContact}`, 20, 80);
+    doc.text(`Pagamento: ${ticket.paymentMethod || "N/A"}`, 20, 88);
 
-      doc.setFontSize(12);
-      doc.setTextColor(0);
-      doc.text(`Bilhete Nº: ${ticket.ticketNumber}`, 20, 50);
-      doc.text(`Data de Emissão: ${formattedDate}`, 20, 58);
-      doc.line(20, 62, 190, 62);
+    doc.text(`Preço Unitário: MZN ${ticket.unitPrice}`, 20, 96);
+    doc.text(`Valor Total: MZN ${ticket.totalPrice}`, 20, 104);
 
-      doc.text(`Partida: ${ticket.departure}`, 20, 70);
-      doc.text(`Destino: ${ticket.destination}`, 20, 78);
-      doc.text(`Data da Viagem: ${ticket.date}`, 20, 86);
-      doc.text(`Quantidade: ${ticket.quantity}`, 20, 94);
-      doc.text(`Número Familiar: ${ticket.familyContact}`, 20, 102);
-      doc.line(20, 106, 190, 106);
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text(
+      "Suporte: (+258) 84 624 8290 | (+258) 87 383 5760 | Facilnampula@gmail.com",
+      20,
+      114
+    );
 
-      doc.text(`Preço Unitário: MZN ${ticket.unitPrice}`, 20, 114);
-      doc.text(`Valor Total: MZN ${ticket.totalPrice}`, 20, 122);
-      doc.line(20, 126, 190, 126);
+    const pdfOutput = doc.output("datauristring").split(",")[1];
+    const fileName = `bilhete-${ticket.ticketNumber}.pdf`;
 
-      doc.setFontSize(10);
-      doc.setTextColor(100);
-      doc.text('Suporte: (+258) 84 624 8290 | (+258) 87 383 5760 | Facilnampula@gmail.com', 20, 162);
+    try {
+      if (window.Capacitor?.isNativePlatform()) {
+        const result = await Filesystem.writeFile({
+          path: fileName,
+          data: pdfOutput,
+          directory: Directory.Documents,
+          encoding: Encoding.Base64,
+        });
 
-      doc.save(`bilhete-${ticket.ticketNumber}.pdf`);
-    };
+        await FileOpener.open({
+          filePath: result.uri,
+          contentType: "application/pdf",
+        });
+      } else {
+        doc.save(fileName);
+      }
+    } catch (err) {
+      console.error("Erro ao salvar/abrir PDF:", err);
+    }
   };
 
   return (
@@ -71,7 +86,7 @@ const MyTickets = () => {
             {tickets.map((ticket, i) => (
               <div
                 key={i}
-                className="flex rounded-lg justify-between items-center p-4 shadow-md border border-[#27A614]/30 bg-white/30 backdrop-blur-md text-[#0A7307]"
+                className="flex justify-between items-center p-4 shadow-md border border-[#27A614]/30 bg-white/30 backdrop-blur-md text-[#0A7307]"
               >
                 <div>
                   <h3 className="text-lg font-bold">
@@ -93,6 +108,9 @@ const MyTickets = () => {
                     {t("myTickets.familyContact")}: {ticket.familyContact}
                   </p>
                   <p className="text-sm">
+                    {/* {t("myTickets.paymentMethod")}: {ticket.paymentMethod || "N/A"} */}
+                  </p>
+                  <p className="text-sm">
                     {t("myTickets.unitPrice")}: {ticket.unitPrice} MT
                   </p>
                   <p className="text-sm">
@@ -111,10 +129,7 @@ const MyTickets = () => {
         )}
         <button
           onClick={() => navigate("/mainmenu")}
-          className="
-            mt-6 px-6 py-3 bg-gray-200 text-gray-800 rounded-md
-            hover:bg-gray-300 transition font-medium
-          "
+          className="mt-6 px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition font-medium"
         >
           {t("ticket.back")}
         </button>

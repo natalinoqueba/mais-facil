@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">+Facil</string>
+    <string name="title_activity_main">+Facil</string>
+    <string name="package_name">com.maisfacil.maisfacilapp</string>
+    <string name="custom_url_scheme">com.maisfacil.maisfacilapp</string>
+</resources>

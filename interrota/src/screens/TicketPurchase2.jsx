@@ -188,7 +188,36 @@ const TicketPurchase = () => {
           className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
         />
       </div>
+      <div>
+        <label htmlFor="hasDisability" className="block mb-1 font-medium">
+          {t("ticket.hasDisability")}
+        </label>
+        <select
+          id="hasDisability"
+          value={form.hasDisability}
+          onChange={handleChange}
+          className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+        >
+          <option value="no">{t("ticket.nohas")}</option>
+          <option value="yes">{t("ticket.yeashas")}</option>
+        </select>
+      </div>
 
+      {form.hasDisability === "yes" && (
+        <div>
+          <label htmlFor="disabilityDetails" className="block mb-1 font-medium">
+            {t("ticket.disabilityDetails")}
+          </label>
+          <input
+            id="disabilityDetails"
+            type="text"
+            value={form.disabilityDetails}
+            onChange={handleChange}
+            placeholder={t("ticket.placeholders.disabilityDetails")}
+            className="w-full p-3 border rounded-md bg-white/70 text-[#0A7307] focus:outline-none focus:ring-2 focus:ring-[#27A614]"
+          />
+        </div>
+      )}
       {/* Preços */}
       {form.company && (
         <div className="text-sm text-[#0A7307] font-medium space-y-1">

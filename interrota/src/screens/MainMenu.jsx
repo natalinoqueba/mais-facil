@@ -76,7 +76,7 @@ const MainMenu = () => {
           "
         >
           <h2 className="text-3xl font-bold text-[#0A7307] mb-6 select-none">
-            +Facil
+            <span className="text-7xl mr-[-8px] ]">+</span>Facil
           </h2>
           {/* <p className="text-lg text-gray-800 mb-6">
             Descubra a beleza e a riqueza cultural de Moçambique com a +Facil!
